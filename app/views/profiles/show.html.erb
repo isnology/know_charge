@@ -1,44 +1,51 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @profile.first_name %>
-</p>
+<div class="profile">
+  <div class="flex-grid">
+    <div class="col image">
+      <% if @profile.image.present? %>
+        <%= image_tag @profile.image_url(:original), size: '300x210', alt: "profile photo" %>
+      <% else %>
+        <p>Np photo</p>
+      <% end %>
+    </div>
+  </div>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @profile.last_name %>
-</p>
+  <div class="flex-grid" >
+    <div class="col"><strong>Name:</strong></div>
+    <div class="col val">
+    <%= @profile.full_name %>
+    </div>
+  </div>
 
-<p>
-  <strong>Street number:</strong>
-  <%= @profile.street_number %>
-</p>
+  <div class="flex-grid" >
+    <div class="col"><strong>Street number:</strong></div>
+    <div class="col val" ><%= @profile.street_number %></div>
+  </div>
 
-<p>
-  <strong>Street:</strong>
-  <%= @profile.street %>
-</p>
+  <div class="flex-grid" >
+    <div class="col"><strong>Street:</strong></div>
+    <div class="col val" ><%= @profile.street %></div>
+  </div>
 
-<p>
-  <strong>City:</strong>
-  <%= @profile.city %>
-</p>
+  <div class="flex-grid" >
+    <div class="col"><strong>City:</strong></div>
+    <div class="col val" ><%= @profile.city %></div>
+  </div>
 
-<p>
-  <strong>State:</strong>
-  <%= @profile.state %>
-</p>
+  <div class="flex-grid" >
+    <div class="col"><strong>Postcode:</strong></div>
+    <div class="col val" ><%= @profile.postcode %></div>
+  </div>
 
-<p>
-  <strong>Image data:</strong>
-  <%= @profile.image_data %>
-</p>
+  <div class="flex-grid" >
+    <div class="col"><strong>State:</strong></div>
+    <div class="col val" ><%= @profile.state %></div>
+  </div>
 
-<p>
-  <strong>User:</strong>
-  <%= @profile.user %>
-</p>
-
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
+  <div class="flex-grid">
+    <div class="col">
+      <%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-warning' %>
+      <%= link_to 'Back', profiles_path, class: 'btn btn-success' %>
+    </div>
+  </div>
+</div>

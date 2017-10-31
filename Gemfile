@@ -39,6 +39,7 @@ gem 'geocoder'
 gem 'money-rails'
 gem 'mailgun-ruby', '~>1.1.6'
 gem 'kramdown'
+gem "aws-sdk", "~> 3"
 gem 'fastimage'
 gem 'image_processing'
 gem 'mini_magick'

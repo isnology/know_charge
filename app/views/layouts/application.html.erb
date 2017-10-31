@@ -3,12 +3,47 @@
   <head>
     <title>KnowCharge</title>
     <%= csrf_meta_tags %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+  <nav>
+    <input id="nav-check" type="checkbox">
+    <label id="nav-icon" for="nav-check">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <div class="menu">
+      <%= link_to 'Home', '#', class: "m-item #{set_target('homes')}" %>
+      <%= link_to 'My Details', profiles_path, class: "m-item #{set_target('profiles')}" %>
+      <%= link_to 'My Vehicles', '#', class: "m-item #{set_target('vehicles')}" %>
+      <%= link_to 'My Charge Stations', '#', class: "m-item #{set_target('chargers')}" %>
+      <%= link_to 'My Favourites', '#', class: "m-item #{set_target('favourites')}" %>
+      <div class="head">
+        <%= set_heading %>
+      </div>
+    </div>
+  </nav>
+  <div class="header-bar flex-grid">
+    <div class="col">
+      <% if user_signed_in? %>
+        <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'in-out') %>
+      <% else %>
+        <%= link_to('Login', new_user_session_path, class: 'in-out')  %>
+      <% end %>
+    </div>
+    <div class="col head">
+      <h3>Know Charge</h3>
+    </div>
+    <div class="col"></div>
+  </div>
   <div class="container">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
