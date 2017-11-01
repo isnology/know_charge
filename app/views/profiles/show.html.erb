@@ -1,51 +1,48 @@
-
-<div class="profile">
-  <div class="flex-grid">
-    <div class="col image">
+<div class="profiles flex-main">
+  <div class="down">
+    <div class="item image">
       <% if @profile.image.present? %>
         <%= image_tag @profile.image_url(:original), size: '300x210', alt: "profile photo" %>
       <% else %>
         <p>Np photo</p>
       <% end %>
     </div>
-  </div>
 
-  <div class="flex-grid" >
-    <div class="col"><strong>Name:</strong></div>
-    <div class="col val">
-    <%= @profile.full_name %>
+    <div class="across" >
+      <div class="item"><strong>Name:</strong></div>
+      <div class="item val">
+      <%= @profile.full_name %>
+      </div>
+    </div>
+
+    <div class="across" >
+      <div class="item"><strong>Street number:</strong></div>
+      <div class="item val" ><%= @profile.street_number %></div>
+    </div>
+
+    <div class="across" >
+      <div class="item"><strong>Street:</strong></div>
+      <div class="item val" ><%= @profile.street %></div>
+    </div>
+
+    <div class="across" >
+      <div class="item"><strong>City:</strong></div>
+      <div class="item val" ><%= @profile.city %></div>
+    </div>
+
+    <div class="across" >
+      <div class="item"><strong>Postcode:</strong></div>
+      <div class="item val" ><%= @profile.postcode %></div>
+    </div>
+
+    <div class="across" >
+      <div class="item"><strong>State:</strong></div>
+      <div class="item val" ><%= @profile.state %></div>
+    </div>
+
+    <div class="across">
+      <div class="item"><%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-warning' %></div>
     </div>
   </div>
-
-  <div class="flex-grid" >
-    <div class="col"><strong>Street number:</strong></div>
-    <div class="col val" ><%= @profile.street_number %></div>
-  </div>
-
-  <div class="flex-grid" >
-    <div class="col"><strong>Street:</strong></div>
-    <div class="col val" ><%= @profile.street %></div>
-  </div>
-
-  <div class="flex-grid" >
-    <div class="col"><strong>City:</strong></div>
-    <div class="col val" ><%= @profile.city %></div>
-  </div>
-
-  <div class="flex-grid" >
-    <div class="col"><strong>Postcode:</strong></div>
-    <div class="col val" ><%= @profile.postcode %></div>
-  </div>
-
-  <div class="flex-grid" >
-    <div class="col"><strong>State:</strong></div>
-    <div class="col val" ><%= @profile.state %></div>
-  </div>
-
-  <div class="flex-grid">
-    <div class="col">
-      <%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-warning' %>
-      <%= link_to 'Back', profiles_path, class: 'btn btn-success' %>
-    </div>
-  </div>
+  <div class="item f3"></div>
 </div>

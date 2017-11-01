@@ -12,7 +12,7 @@ module ApplicationHelper
         'My Details'
       when 'vehicles'
         'My Vehicles'
-      when 'chargers'
+      when 'charge_stations'
         'My Charge Stations'
       when 'favourites'
         'My Favourites'
