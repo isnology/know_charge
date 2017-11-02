@@ -1,0 +1,33 @@
+<div class="charge_stations">
+
+  <div class="flex-table" >
+    <% @charge_stations.each do |charge_station| %>
+      <div class="row">
+        <div class="pair">
+          <div class="label f3">Address</div>
+          <div class="data f7"><%= link_to charge_station.address, charge_station %></div>
+        </div>
+        <div class="pair">
+          <div class="label f3">Charge kw/h</div>
+          <div class="data f7"><%= charge_station.charge_kwh %></div>
+        </div>
+        <div class="pair">
+          <div class="label f3">Adapter</div>
+          <div class="data f7"><%= charge_station.adapter.to_plug %></div>
+        </div>
+        <div class="pair">
+          <div class="no-label"></div>
+          <div class="data buttons">
+            <%= link_to 'Edit', edit_charge_station_path(charge_station), class: 'item btn btn-warning' %>
+            <%= link_to 'Destroy', charge_station, method: :delete, data: { confirm: 'Are you sure?' }, class: 'item
+            btn
+          btn-danger' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+<br/>
+<%= link_to 'New Charge Station', new_charge_station_path, class: 'btn btn-warning' %>
+</div>

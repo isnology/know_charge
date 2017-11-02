@@ -1,0 +1,2 @@
+module AdapterPlugsHelper
+end

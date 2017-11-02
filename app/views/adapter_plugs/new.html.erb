@@ -1,0 +1,7 @@
+<div class="adapter_plugs">
+  <h4><%= @charge_station.address %></h4>
+
+  <%= render 'form', charge_station: @charge_station, adapter_plug: @adapter_plug %>
+
+  <%= link_to 'Back', charge_station_adapter_plugs_path(@charge_station), class: 'btn btn-success' %>
+</div>

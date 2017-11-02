@@ -10,10 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171031103742) do
+ActiveRecord::Schema.define(version: 20171101054642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "adapter_plugs", force: :cascade do |t|
+    t.bigint "adapter_id"
+    t.bigint "charge_station_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["adapter_id"], name: "index_adapter_plugs_on_adapter_id"
+    t.index ["charge_station_id"], name: "index_adapter_plugs_on_charge_station_id"
+  end
+
+  create_table "adapters", force: :cascade do |t|
+    t.string "to_plug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "charge_stations", force: :cascade do |t|
+    t.string "street_number"
+    t.string "street"
+    t.string "city"
+    t.string "postcode"
+    t.string "state"
+    t.float "charge_kwh"
+    t.bigint "adapter_id"
+    t.time "open_time"
+    t.time "close_time"
+    t.string "days_of_week"
+    t.integer "price_kwh_cents"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["adapter_id"], name: "index_charge_stations_on_adapter_id"
+    t.index ["user_id"], name: "index_charge_stations_on_user_id"
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.string "first_name"
@@ -61,6 +95,10 @@ ActiveRecord::Schema.define(version: 20171031103742) do
     t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 
+  add_foreign_key "adapter_plugs", "adapters"
+  add_foreign_key "adapter_plugs", "charge_stations"
+  add_foreign_key "charge_stations", "adapters"
+  add_foreign_key "charge_stations", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "vehicles", "users"
 end

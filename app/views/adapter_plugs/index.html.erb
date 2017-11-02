@@ -1,0 +1,28 @@
+<div class="adapter_plugs">
+  <h4><%= @charge_station.address %></h4>
+
+  <div class="flex-table">
+    <% @adapter_plugs.each do |adapter_plug| %>
+      <div class="row">
+        <div class="pair">
+          <div class="label f3">Adapter Plugs</div>
+          <div class="data f7"><%= adapter_plug.adapter.to_plug %></div>
+        </div>
+        <div class="pair">
+          <div class="no-label"></div>
+          <div class="data buttons">
+            <%= link_to 'Edit', edit_charge_station_adapter_plug_path(@charge_station, adapter_plug), class: 'btn
+            btn-warning' %>
+            <%= link_to 'Destroy', [@charge_station, adapter_plug], method: :delete, data: { confirm: 'Are you sure?'
+            }, class: 'btn
+            btn-danger' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <br>
+  <%= link_to 'New Adapter Plug', new_charge_station_adapter_plug_path(@charge_station), class: 'btn btn-warning' %>
+  <%= link_to 'Back', charge_station_path(@charge_station), class: 'btn btn-success' %>
+</div>

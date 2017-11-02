@@ -1,0 +1,27 @@
+<div class="adapters">
+
+<h1>Adapters</h1>
+
+<table class="table  table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>To plug</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @adapters.each do |adapter| %>
+      <tr>
+        <td><%= adapter.to_plug %></td>
+        <td><%= link_to 'Edit', edit_adapter_path(adapter), class: 'btn btn-warning' %></td>
+        <td><%= link_to 'Destroy', adapter, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn
+        btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Adapter', new_adapter_path, class: 'btn btn-warning' %>

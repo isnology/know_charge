@@ -40,8 +40,57 @@ $dark: black;
   flex: 1;
 }
 
-.image {
-  padding: 5px 5px 10px 5px;
+.slabel {
+  flex: 1;
+  border: 1px solid white;
+  padding: 3px;
+  background: lightblue;
+  min-width: 8em;
+}
+
+// my flex-box table
+.flex-table {
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+  padding: 0 15px 0 15px;
+  border: 1px solid white;
+}
+.row {
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+  border-bottom: 2px solid white;
+}
+.row:last-child {
+  border-bottom: 0;
+}
+.pair {
+  display: flex;
+  flex-flow: row;
+  flex: 1;
+}
+.label {
+  flex: 1;
+  border: 1px solid white;
+  padding: 3px;
+  background: lightblue;
+}
+.data {
+  flex: 1;
+  border: 1px solid white;
+  padding: 3px;
+  min-width: 10em;
+}
+// end flex-box table
+
+//.img {
+//  padding: 5px 5px 10px 5px;
+//}
+
+figure {
+  text-align: center;
+  margin: 0;
 }
 
 .f2 {
@@ -58,6 +107,22 @@ $dark: black;
 
 .f5 {
   flex: 5;
+}
+
+.f6 {
+  flex: 6;
+}
+
+.f7 {
+  flex: 7;
+}
+
+.f8 {
+  flex: 8;
+}
+
+.f9 {
+  flex: 9;
 }
 
 body {
@@ -143,10 +208,6 @@ body {
   background: $green;
   z-index: 10;
 
-  a:first-child {
-    margin-top: 1px;
-  }
-
   a {
     display: block;
     width: 80%;
@@ -224,6 +285,12 @@ thead {
   margin: 2px;
 }
 
+.buttons {
+  flex: 2;
+  align-items: center;
+  min-height: 2.5em;
+}
+
 .profiles {
   label {
     width: 7em;
@@ -235,17 +302,29 @@ thead {
   label {
     width: 12em;
   }
+  .slabel {
+    min-width: 9em;
+  }
 
   .w1 {
     min-width: 18em;
     max-width: 20em;
   }
-  .buttons {
-    flex: 2;
-    align-items: center;
+}
+
+.adapters
+{
+  .w1 {
+    min-width: 7em;
   }
 }
 
+.charge_stations
+{
+  label {
+    width: 7em;
+  }
+}
 .flex-main.bd {
   border-bottom: 1px solid black;
 }
@@ -300,6 +379,40 @@ thead {
 
   .flex-main {
     flex-flow: row wrap;
+  }
+
+  // my flex-box table
+  .row {
+    display: flex;
+    flex-flow: row wrap;
+    flex: 1;
+    //border-bottom: 0;
+  }
+  .label, .no-label {
+    display: none;
+    min-height: 2em;
+    max-height: 2em;
+  }
+  .flex-table .row:nth-child(1) .pair .label {
+    display: flex;
+  }
+  .flex-table .row:nth-child(1) .pair .no-label {
+    display: flex;
+    border: 1px solid white;
+    padding: 3px;
+    background: lightblue;
+  }
+  .pair {
+    display: flex;
+    flex-flow: column;
+    flex: 1;
+  }
+  // end flex-box table
+
+  .vehicles {
+    .buttons {
+      margin-left: 2em;
+    }
   }
 
 }

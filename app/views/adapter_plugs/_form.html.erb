@@ -1,0 +1,22 @@
+<%= form_with(model: [charge_station, adapter_plug], local: true) do |form| %>
+  <% if adapter_plug.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(adapter_plug.errors.count, "error") %> prohibited this adapter_plug from being saved:</h2>
+
+      <ul>
+      <% adapter_plug.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :adapter_id %>
+    <%= form.collection_select :adapter_id, Adapter.order(:to_plug), :id, :to_plug %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-warning' %>
+  </div>
+<% end %>

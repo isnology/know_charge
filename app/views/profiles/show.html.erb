@@ -1,47 +1,47 @@
 <div class="profiles flex-main">
   <div class="down">
-    <div class="item image">
+    <figure class="data">
       <% if @profile.image.present? %>
         <%= image_tag @profile.image_url(:original), size: '300x210', alt: "profile photo" %>
       <% else %>
         <p>Np photo</p>
       <% end %>
-    </div>
+    </figure>
 
     <div class="across" >
-      <div class="item"><strong>Name:</strong></div>
-      <div class="item val">
+      <div class="slabel"><strong>Name:</strong></div>
+      <div class="data">
       <%= @profile.full_name %>
       </div>
     </div>
 
     <div class="across" >
-      <div class="item"><strong>Street number:</strong></div>
-      <div class="item val" ><%= @profile.street_number %></div>
+      <div class="slabel"><strong>Street number:</strong></div>
+      <div class="data" ><%= @profile.street_number %></div>
     </div>
 
     <div class="across" >
-      <div class="item"><strong>Street:</strong></div>
-      <div class="item val" ><%= @profile.street %></div>
+      <div class="slabel"><strong>Street:</strong></div>
+      <div class="data" ><%= @profile.street %></div>
     </div>
 
     <div class="across" >
-      <div class="item"><strong>City:</strong></div>
-      <div class="item val" ><%= @profile.city %></div>
+      <div class="slabel"><strong>City:</strong></div>
+      <div class="data" ><%= @profile.city %></div>
     </div>
 
     <div class="across" >
-      <div class="item"><strong>Postcode:</strong></div>
-      <div class="item val" ><%= @profile.postcode %></div>
+      <div class="slabel"><strong>Postcode:</strong></div>
+      <div class="data" ><%= @profile.postcode %></div>
     </div>
 
     <div class="across" >
-      <div class="item"><strong>State:</strong></div>
-      <div class="item val" ><%= @profile.state %></div>
+      <div class="slabel"><strong>State:</strong></div>
+      <div class="data" ><%= @profile.state %></div>
     </div>
-
-    <div class="across">
-      <div class="item"><%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-warning' %></div>
+    <br/>
+    <div class="across buttons">
+      <%= link_to 'Edit', edit_profile_path(@profile), class: 'item btn btn-warning' %>
     </div>
   </div>
   <div class="item f3"></div>

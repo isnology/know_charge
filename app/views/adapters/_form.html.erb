@@ -1,0 +1,22 @@
+<%= form_with(model: adapter, local: true) do |form| %>
+  <% if adapter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(adapter.errors.count, "error") %> prohibited this adapter from being saved:</h2>
+
+      <ul>
+      <% adapter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :to_plug %>
+    <%= form.text_field :to_plug, id: :adapter_to_plug %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-warning' %>
+  </div>
+<% end %>

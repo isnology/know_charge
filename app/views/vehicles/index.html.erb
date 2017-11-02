@@ -1,52 +1,54 @@
 <div class="vehicles">
-  <% @vehicles.each do |vehicle| %>
-    <div class="flex-main bd">
-      <div class="across image">
-          <% if vehicle.image.present? %>
-            <%= image_tag vehicle.image_url(:original), size: '150x100', alt: "vehicle photo" %>
-          <% else %>
-            <p>Np photo</p>
-          <% end %>
+  <div class="flex-table">
+    <% @vehicles.each do |vehicle| %>
+      <div class="row">
+        <figure class="data">
+            <% if vehicle.image.present? %>
+              <%= image_tag vehicle.image_url(:original), size: '150x100', alt: "vehicle photo" %>
+            <% else %>
+              <p>Np photo</p>
+            <% end %>
+        </figure>
+        <div class="down f2 w1">
+          <div class="across">
+            <div class="slabel">Licence Plate:</div>
+            <div class="data"><%= vehicle.licence_plate %></div>
+          </div>
+
+          <div class="across">
+            <div class="slabel">Make:</div>
+            <div class="data"><%= vehicle.make %></div>
+          </div>
+
+          <div class="across">
+            <div class="slabel">Model:</div>
+            <div class="data" ><%= vehicle.model %></div>
+          </div>
+
+          <div class="across">
+            <div class="slabel">Colour:</div>
+            <div class="data"><%= vehicle.colour %></div>
+          </div>
+
+          <div class="across">
+            <div class="slabel" >Charge Kw/h:</div>
+            <div class="data"><%= vehicle.charger_kwh %></div>
+          </div>
+
+          <div class="across">
+            <div class="slabel">Drivers Licence:</div>
+            <div class="data"><%= vehicle.drivers_licence_number %></div>
+          </div>
+        </div>
+        <div class="across buttons">
+          <%= link_to 'Show', vehicle, class: 'item btn btn-success' %>
+          <%= link_to 'Edit', edit_vehicle_path(vehicle), class: 'item btn btn-warning' %>
+          <%= link_to 'Destroy', vehicle, method: :delete, data: { confirm: 'Are you sure?' }, class: 'item btn btn-danger' %>
+        </div>
+        <div class="across f3"></div>
       </div>
-      <div class="down f2 w1">
-        <div class="across">
-          <div class="item ">Licence Plate:</div>
-          <div class="item "><%= vehicle.licence_plate %></div>
-        </div>
-
-        <div class="across">
-          <div class="item">Make:</div>
-          <div class="item"><%= vehicle.make %></div>
-        </div>
-
-        <div class="across">
-          <div class="item">Model:</div>
-          <div class="item" ><%= vehicle.model %></div>
-        </div>
-
-        <div class="across">
-          <div class="item">Colour:</div>
-          <div class="item"><%= vehicle.colour %></div>
-        </div>
-
-        <div class="across">
-          <div class="item" >Charge Kw/h:</div>
-          <div class="item"><%= vehicle.charger_kwh %></div>
-        </div>
-
-        <div class="across">
-          <div class="item">Drivers Licence:</div>
-          <div class="item"><%= vehicle.drivers_licence_number %></div>
-        </div>
-      </div>
-      <div class="across buttons">
-        <div class="item"><%= link_to 'Show', vehicle, class: 'btn btn-success' %></div>
-        <div class="item"><%= link_to 'Edit', edit_vehicle_path(vehicle), class: 'btn btn-warning' %></div>
-        <div class="item"><%= link_to 'Destroy', vehicle, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn
-          btn-danger' %></div>
-      </div>
-      <div class="across f3"></div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
+<br/>
 <div class="across"> <%= link_to 'New Vehicle', new_vehicle_path, class: 'btn btn-warning' %></div>

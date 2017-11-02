@@ -1,0 +1,72 @@
+<%= form_with(model: charge_station, local: true) do |form| %>
+  <% if charge_station.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(charge_station.errors.count, "error") %> prohibited this charge_station from being saved:</h2>
+
+      <ul>
+      <% charge_station.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :street_number %>
+    <%= form.text_field :street_number, id: :charge_station_street_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :street %>
+    <%= form.text_field :street, id: :charge_station_street %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city, id: :charge_station_city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :postcode %>
+    <%= form.text_field :postcode, id: :charge_station_postcode %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.text_field :state, id: :charge_station_state %>
+  </div>
+
+  <div class="field">
+    <%= form.label :charge_kwh %>
+    <%= form.text_field :charge_kwh, id: :charge_station_charge_kwh %>
+  </div>
+
+  <div class="field">
+    <%= form.label :adapter_id %>
+    <%= form.collection_select :adapter_id, Adapter.order(:to_plug), :id, :to_plug %>
+  </div>
+
+  <div class="field">
+    <%= form.label :open_time %>
+    <%= form.time_select :open_time, id: :charge_station_open_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :close_time %>
+    <%= form.time_select :close_time, id: :charge_station_close_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :days_of_week %>
+    <%= form.text_field :days_of_week, id: :charge_station_days_of_week %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price_kwh_cents %>
+    <%= form.text_field :price_kwh_cents, id: :charge_station_price_kwh_cents %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-warning' %>
+  </div>
+<% end %>
