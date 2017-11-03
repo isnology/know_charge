@@ -52,7 +52,7 @@
 
     <div class="across">
       <div class="slabel f4">Price kw/h:</div>
-      <div class="data f5"><%= @charge_station.price_kwh_cents %></div>
+      <div class="data f5"><%= @charge_station.price_kwh.format %></div>
     </div>
 
     <% if @plugs.present? %>

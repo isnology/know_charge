@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101054642) do
+ActiveRecord::Schema.define(version: 20171103021023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,19 @@ ActiveRecord::Schema.define(version: 20171101054642) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "bookings", force: :cascade do |t|
+    t.date "date"
+    t.time "time"
+    t.integer "duration"
+    t.integer "price_cents"
+    t.bigint "vehicle_id"
+    t.bigint "charge_station_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["charge_station_id"], name: "index_bookings_on_charge_station_id"
+    t.index ["vehicle_id"], name: "index_bookings_on_vehicle_id"
+  end
+
   create_table "charge_stations", force: :cascade do |t|
     t.string "street_number"
     t.string "street"
@@ -45,6 +58,8 @@ ActiveRecord::Schema.define(version: 20171101054642) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["adapter_id"], name: "index_charge_stations_on_adapter_id"
     t.index ["user_id"], name: "index_charge_stations_on_user_id"
   end
@@ -61,6 +76,8 @@ ActiveRecord::Schema.define(version: 20171101054642) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "postcode"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
@@ -97,6 +114,8 @@ ActiveRecord::Schema.define(version: 20171101054642) do
 
   add_foreign_key "adapter_plugs", "adapters"
   add_foreign_key "adapter_plugs", "charge_stations"
+  add_foreign_key "bookings", "charge_stations"
+  add_foreign_key "bookings", "vehicles"
   add_foreign_key "charge_stations", "adapters"
   add_foreign_key "charge_stations", "users"
   add_foreign_key "profiles", "users"

@@ -15,7 +15,12 @@ $dark: black;
 .main {
   width: 95%;
   margin: 0 auto;
-  padding-top: 3em;
+  padding-top: 2em;
+}
+
+#map {
+  height: 70vh;
+  width: 95vw;
 }
 
 .flex-main {
@@ -83,10 +88,6 @@ $dark: black;
   min-width: 10em;
 }
 // end flex-box table
-
-//.img {
-//  padding: 5px 5px 10px 5px;
-//}
 
 figure {
   text-align: center;
@@ -413,6 +414,12 @@ thead {
     .buttons {
       margin-left: 2em;
     }
+  }
+
+  #map {
+    margin-top: .3em;
+    height: 85vh;
+    width: 45vw;
   }
 
 }

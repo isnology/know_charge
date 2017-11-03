@@ -17,6 +17,8 @@
 #  user_id         :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  latitude        :float
+#  longitude       :float
 #
 
 class ChargeStation < ApplicationRecord
@@ -24,7 +26,17 @@ class ChargeStation < ApplicationRecord
   belongs_to :user
   has_many :adapter_plugs
   
+  monetize :price_kwh_cents
+
+  geocoded_by :full_address
+  after_validation :geocode, #if: ->(obj){ obj.full_address.present? and obj.full_address_changed? }
+
+
   def address
     "#{street_number} #{street}, #{city}, #{state}, #{postcode}"
+  end
+  
+  def full_address
+    address << ', Australia'
   end
 end

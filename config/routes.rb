@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   
-  root 'profiles#show'
+  
+
+  
+  root 'homes#index'
   devise_for :users
+  get 'homes/index'
   
   # hide profile id, Note user set to dependent: :destroy so no destroy route
   get 'profiles/new' => 'profiles#new', as: 'new_profile'
@@ -16,6 +20,7 @@ Rails.application.routes.draw do
   resources :charge_stations do
     resources :adapter_plugs
   end
+  resources :bookings
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
