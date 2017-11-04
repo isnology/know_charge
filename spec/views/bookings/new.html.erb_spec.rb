@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "bookings/new", type: :view do
   before(:each) do
     assign(:booking, Booking.new(
-      :duration => 1,
+      :name => "MyString",
       :price_cents => 1,
       :vehicle => nil,
       :charge_station => nil
@@ -15,7 +15,7 @@ RSpec.describe "bookings/new", type: :view do
 
     assert_select "form[action=?][method=?]", bookings_path, "post" do
 
-      assert_select "input[name=?]", "booking[duration]"
+      assert_select "input[name=?]", "booking[name]"
 
       assert_select "input[name=?]", "booking[price_cents]"
 

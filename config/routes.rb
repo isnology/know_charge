@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   
   
-
-  
   root 'homes#index'
   devise_for :users
   get 'homes/index'
@@ -18,7 +16,7 @@ Rails.application.routes.draw do
   resources :vehicles
   resources :adapters, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :charge_stations do
-    resources :adapter_plugs
+    resources :adapter_plugs, only: [:index, :new, :create, :edit, :update, :destroy]
   end
   resources :bookings
   

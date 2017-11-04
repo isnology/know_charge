@@ -1,69 +1,31 @@
-<div class="charge_stations flex-main">
-  <div class="down">
+<div class="charge_stations">
+  <div class="s-table">
     <div class="across">
-      <div class="slabel f4">Street number:</div>
+      <div class="s-label f4">Street number:</div>
       <div class="data f5"><%= @charge_station.street_number %></div>
     </div>
 
     <div class="across">
-      <div class="slabel f4">Street:</div>
+      <div class="s-label f4">Street:</div>
       <div class="data f5"><%= @charge_station.street %></div>
     </div>
 
     <div class="across">
-      <div class="slabel f4">City:</div>
+      <div class="s-label f4">City:</div>
       <div class="data f5"><%= @charge_station.city %></div>
     </div>
 
     <div class="across">
-      <div class="slabel f4">Postcode:</div>
+      <div class="s-label f4">Postcode:</div>
       <div class="data f5"><%= @charge_station.postcode %></div>
     </div>
 
     <div class="across">
-      <div class="slabel f4">State:</div>
+      <div class="s-label f4">State:</div>
       <div class="data f5"><%= @charge_station.state %></div>
     </div>
 
-    <div class="across">
-      <div class="slabel f4">Charge kw/h:</div>
-      <div class="data f5"><%= @charge_station.charge_kwh %></div>
-    </div>
-
-    <div class="across">
-      <div class="slabel f4">Adapter:</div>
-      <div class="data f5"><%= @charge_station.adapter.to_plug %></div>
-    </div>
-
-    <div class="across">
-      <div class="slabel f4">Open time:</div>
-      <div class="data f5"><%= @charge_station.open_time.strftime("%I:%M %p") %></div>
-    </div>
-
-    <div class="across">
-      <div class="slabel f4">Close time:</div>
-      <div class="data f5"><%= @charge_station.close_time.strftime("%I:%M %p") %></div>
-    </div>
-
-    <div class="across">
-      <div class="slabel f4">Days of week:</div>
-      <div class="data f5"><%= @charge_station.days_of_week %></div>
-    </div>
-
-    <div class="across">
-      <div class="slabel f4">Price kw/h:</div>
-      <div class="data f5"><%= @charge_station.price_kwh.format %></div>
-    </div>
-
-    <% if @plugs.present? %>
-      <% @plugs.each do | plug | %>
-        <div class="across">
-          <div class="slabel">Adapter Plug:</div>
-          <div class="data"><%= plug.to_plug %></div>
-        </div>
-      <% end %>
-    <% end %>
-
+    <%= render 'layouts/charge_station_details', charge_station: @charge_station, plugs: @plugs %>
 
     <div class="across buttons">
       <%= link_to 'Edit', edit_charge_station_path(@charge_station), class: 'item btn btn-warning' %>
@@ -74,5 +36,5 @@
       btn-warning' %>
     </div>
   </div>
-  <div class="item f3"></div>
+
 </div>

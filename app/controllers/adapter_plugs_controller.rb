@@ -1,18 +1,14 @@
 class AdapterPlugsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_charge_station
-  before_action :set_adapter_plug, only: [:show, :edit, :update, :destroy]
+  before_action :set_adapter_plug, only: [:edit, :update, :destroy]
 
   # GET /adapter_plugs
   # GET /adapter_plugs.json
   def index
     @adapter_plugs = AdapterPlug.where(charge_station: @charge_station)
   end
-
-  # GET /adapter_plugs/1
-  # GET /adapter_plugs/1.json
-  def show
-  end
+  
 
   # GET /adapter_plugs/new
   def new

@@ -21,4 +21,9 @@ module ApplicationHelper
     end
   end
   
+  def to_days(week)
+    days = %w(Su Mo Tu We Th Fr Sa)
+    week.split('').map { |day| days[day.to_i] }.join(' ')
+  end
+  
 end

@@ -1,47 +1,54 @@
-<div class="homes flex-main ">
+<div class="homes flex-main">
   <div id="map" class="item"></div>
   <script type="text/javascript">
-    var locations = <%= raw @locations.to_json %>;
-    //[
-    //  ['Bondi Beach', -33.890542, 151.274856, 4],
-    //  ['Coogee Beach', -33.923036, 151.259052, 5],
-    //  ['Cronulla Beach', -34.028249, 151.157507, 3],
-    //  ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-    //  ['Maroubra Beach', -33.950198, 151.259302, 1]
-    //];
-
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 10,
       center: new google.maps.LatLng(<%= @lat_center %>, <%= @long_center %>),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    var infowindow = new google.maps.InfoWindow();
+    var locations = <%= raw @locations.to_json %>;
     var marker, i;
 
     for (i = 0; i < locations.length; i++) {
       marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        position: new google.maps.LatLng(locations[i][0], locations[i][1]),
         map: map
       });
 
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
-          infowindow.setContent(locations[i][0]);
-          infowindow.open(map, marker);
-
-          const url = locations[i][3];
+          const url = locations[i][2];
           window.location.href = url
-
         }
       })(marker, i));
     }
   </script>
 
+
   <div id="station" class="down" >
     <% if @charge_station.present? %>
-       <p><%= @charge_station.full_address %></p>
+      <h5><%= @charge_station.address %></h5>
+      <div class="s-table">
+        <%= render 'layouts/charge_station_details', charge_station: @charge_station, plugs: @plugs %>
+      </div>
+      <%= month_calendar events: @meetings do |date, meetings| %>
+        <% found = false %>
+        <% meetings.each do |meeting| %>
+          <% if meeting.name %>
+            <div class="<%= meeting.name %>"><%= date.day %></div>
+            <% found = true %>
+          <% end %>
+        <% end %>
+        <% if !found %>
+          <%= date.day %>
+        <% end %>
+      <% end %>
+
+
+
     <% end %>
   </div>
+
 
 </div>

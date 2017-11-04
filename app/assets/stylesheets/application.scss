@@ -21,6 +21,7 @@ $dark: black;
 #map {
   height: 70vh;
   width: 95vw;
+  border: 1px solid white;
 }
 
 .flex-main {
@@ -45,9 +46,19 @@ $dark: black;
   flex: 1;
 }
 
-.slabel {
+.s-table {
+  display: flex;
   flex: 1;
-  border: 1px solid white;
+  flex-flow: column;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  max-width: 24em;
+}
+
+.s-label {
+  flex: 1;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
   padding: 3px;
   background: lightblue;
   min-width: 8em;
@@ -59,13 +70,14 @@ $dark: black;
   flex-flow: column;
   flex: 1;
   padding: 0 15px 0 15px;
-  border: 1px solid white;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
 }
 .row {
   display: flex;
   flex-flow: column;
   flex: 1;
-  border-bottom: 2px solid white;
+  border-bottom: 1px solid white;
 }
 .row:last-child {
   border-bottom: 0;
@@ -77,13 +89,17 @@ $dark: black;
 }
 .label {
   flex: 1;
-  border: 1px solid white;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
   padding: 3px;
   background: lightblue;
 }
+
 .data {
   flex: 1;
-  border: 1px solid white;
+
+  border-top: 1px solid white;
+  border-left: 1px solid white;
   padding: 3px;
   min-width: 10em;
 }
@@ -290,7 +306,91 @@ thead {
   flex: 2;
   align-items: center;
   min-height: 2.5em;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
 }
+
+.homes {
+  h5 {
+    text-align: center;
+    margin-top: 1em;
+  }
+  .s-table {
+    margin: 0 auto;
+    min-width: 21em;
+  }
+}
+
+.simple-calendar {
+  margin: 0 auto;
+  th {
+    padding: 3px;
+    text-align: center;
+    min-width: 2.5em;
+  }
+  td {
+    padding: 4px;
+    text-align: center;
+    &.prev-month, &.next-month {
+      background: #ffffd4;
+      &.has-events {
+        .am {
+          display: block;
+          background: linear-gradient(90deg, $darker-blue, $darker-blue, #ffffd4, #ffffd4, #ffffd4);
+          width: 100%;
+          height: 100%;
+        }
+        .pm {
+          display: block;
+          background: linear-gradient(90deg, #ffffd4, #ffffd4, #ffffd4, $darker-blue, $darker-blue);
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    &.has-events {
+      .am {
+        display: block;
+        background: linear-gradient(90deg, $darker-blue, $darker-blue, lightgray, lightgray, lightgray);
+        width: 100%;
+        height: 100%;
+      }
+      .pm {
+        display: block;
+        background: linear-gradient(90deg, lightgray, lightgray, lightgray, $darker-blue, $darker-blue);
+        width: 100%;
+        height: 100%;
+      }
+      .all {
+        display: block;
+        background: $darker-blue;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    &.today {
+      background: $yellow;
+      &.has-events {
+        .am {
+          display: block;
+          background: linear-gradient(90deg, $darker-blue, $darker-blue, $yellow, $yellow, $yellow);
+          width: 100%;
+          height: 100%;
+        }
+        .pm {
+          display: block;
+          background: linear-gradient(90deg, $yellow, $yellow, $yellow, $darker-blue, $darker-blue);
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+  .calendar-heading {
+    text-align: center;
+  }
+}
+
 
 .profiles {
   label {
@@ -303,18 +403,22 @@ thead {
   label {
     width: 12em;
   }
-  .slabel {
+  .s-label {
     min-width: 9em;
   }
-
-  .w1 {
-    min-width: 18em;
-    max-width: 20em;
+  .flex-table {
+    max-width: 50em;
   }
 }
 
 .adapters
 {
+  .flex-table {
+    max-width: 24em;
+  }
+  .label {
+    min-width: 8em;
+  }
   .w1 {
     min-width: 7em;
   }
@@ -325,9 +429,9 @@ thead {
   label {
     width: 7em;
   }
-}
-.flex-main.bd {
-  border-bottom: 1px solid black;
+  .flex-table {
+    max-width: 50em;
+  }
 }
 
 @media (min-width: 768px) {
@@ -387,21 +491,24 @@ thead {
     display: flex;
     flex-flow: row wrap;
     flex: 1;
-    //border-bottom: 0;
   }
   .label, .no-label {
     display: none;
     min-height: 2em;
     max-height: 2em;
   }
-  .flex-table .row:nth-child(1) .pair .label {
-    display: flex;
-  }
-  .flex-table .row:nth-child(1) .pair .no-label {
-    display: flex;
-    border: 1px solid white;
-    padding: 3px;
-    background: lightblue;
+  .flex-table .row:first-child .pair {
+    .label {
+      display: flex;
+    }
+    .no-label {
+      display: flex;
+      flex: 1;
+      border-top: 1px solid white;
+      border-left: 1px solid white;
+      padding: 3px;
+      background: lightblue;
+    }
   }
   .pair {
     display: flex;
@@ -410,16 +517,14 @@ thead {
   }
   // end flex-box table
 
-  .vehicles {
-    .buttons {
-      margin-left: 2em;
-    }
-  }
-
   #map {
     margin-top: .3em;
     height: 85vh;
     width: 45vw;
+  }
+
+  .space {
+    flex: 1;
   }
 
 }

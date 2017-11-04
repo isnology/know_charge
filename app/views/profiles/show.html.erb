@@ -1,5 +1,5 @@
-<div class="profiles flex-main">
-  <div class="down">
+<div class="profiles">
+  <div class="s-table">
     <figure class="data">
       <% if @profile.image.present? %>
         <%= image_tag @profile.image_url(:original), size: '300x210', alt: "profile photo" %>
@@ -9,37 +9,36 @@
     </figure>
 
     <div class="across" >
-      <div class="slabel"><strong>Name:</strong></div>
+      <div class="s-label"><strong>Name:</strong></div>
       <div class="data">
       <%= @profile.full_name %>
       </div>
     </div>
 
     <div class="across" >
-      <div class="slabel"><strong>Street number:</strong></div>
+      <div class="s-label"><strong>Street number:</strong></div>
       <div class="data" ><%= @profile.street_number %></div>
     </div>
 
     <div class="across" >
-      <div class="slabel"><strong>Street:</strong></div>
+      <div class="s-label"><strong>Street:</strong></div>
       <div class="data" ><%= @profile.street %></div>
     </div>
 
     <div class="across" >
-      <div class="slabel"><strong>City:</strong></div>
+      <div class="s-label"><strong>City:</strong></div>
       <div class="data" ><%= @profile.city %></div>
     </div>
 
     <div class="across" >
-      <div class="slabel"><strong>Postcode:</strong></div>
+      <div class="s-label"><strong>Postcode:</strong></div>
       <div class="data" ><%= @profile.postcode %></div>
     </div>
 
     <div class="across" >
-      <div class="slabel"><strong>State:</strong></div>
+      <div class="s-label"><strong>State:</strong></div>
       <div class="data" ><%= @profile.state %></div>
     </div>
-    <br/>
     <div class="across buttons">
       <%= link_to 'Edit', edit_profile_path(@profile), class: 'item btn btn-warning' %>
     </div>

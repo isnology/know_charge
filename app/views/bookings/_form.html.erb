@@ -12,18 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :date %>
-    <%= form.date_select :date, id: :booking_date %>
+    <%= form.label :start_time %>
+    <%= form.date_select :start_time, id: :booking_start_time %>
   </div>
 
   <div class="field">
-    <%= form.label :time %>
-    <%= form.time_select :time, id: :booking_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :duration %>
-    <%= form.number_field :duration, id: :booking_duration %>
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :booking_name %>
   </div>
 
   <div class="field">

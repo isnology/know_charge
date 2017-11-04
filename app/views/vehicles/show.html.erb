@@ -1,6 +1,6 @@
 
-<div class="vehicles flex-main">
-  <div class="down">
+<div class="vehicles">
+  <div class="s-table">
     <figure class="data">
       <% if @vehicle.image.present? %>
         <%= image_tag @vehicle.image_url(:original), size: '320x210', alt: "vehicle photo" %>
@@ -10,32 +10,32 @@
     </figure>
 
     <div class="across">
-      <div class="slabel f3">Licence plate:</div>
+      <div class="s-label f3">Licence plate:</div>
       <div class="data f5"><%= @vehicle.licence_plate %></div>
     </div>
 
     <div class="across">
-      <div class="slabel f3">Make:</div>
+      <div class="s-label f3">Make:</div>
       <div class="data f5"><%= @vehicle.make %></div>
     </div>
 
     <div class="across">
-      <div class="slabel f3">Model:</div>
+      <div class="s-label f3">Model:</div>
       <div class="data f5"><%= @vehicle.model %></div>
     </div>
 
     <div class="across">
-      <div class="slabel f3">Colour:</div>
+      <div class="s-label f3">Colour:</div>
       <div class="data f5"><%= @vehicle.colour %></div>
     </div>
 
     <div class="across">
-      <div class="slabel f3">Charger kwh:</div>
+      <div class="s-label f3">Charger kwh:</div>
       <div class="data f5"><%= @vehicle.charger_kwh %></div>
     </div>
 
     <div class="across">
-      <div class="slabel f3">Drivers licence:</div>
+      <div class="s-label f3">Drivers licence:</div>
       <div class="data f5"><%= @vehicle.drivers_licence_number %></div>
     </div>
 
