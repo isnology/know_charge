@@ -258,13 +258,19 @@ body {
     padding-bottom: 5px;
     border-bottom: 1px solid $darker-blue;
   }
+  // trick to center absolute positioned text - need a second div positioned relative
   .head {
-    margin-top: 3em;
-    display: block;
-    text-align: center;
-    font-size: 29px;
-    text-decoration: none;
-    color: black;
+    position: absolute;
+    top: 360px;
+    left: 0;
+    right: 0;
+    .text {
+      position: relative;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 29px;
+      color: black;
+    }
   }
   .target {
     display: none;
@@ -414,8 +420,7 @@ body {
   }
 }
 
-.adapters
-{
+.adapters {
   .flex-table {
     max-width: 26em;
   }
@@ -427,8 +432,7 @@ body {
   }
 }
 
-.charge_stations
-{
+.charge_stations {
   .flex-table {
     max-width: 50em;
   }
