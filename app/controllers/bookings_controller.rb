@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = Booking.all
+    @bookings = Booking.all.order({start_time: :desc}, :charge_station_id, :name)
   end
 
   # GET /bookings/1
@@ -15,6 +15,8 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
+    @booking.vehicle_id = params[:vehicle_id]
+    @booking.charge_station_id = params[:charge_station_id]
   end
 
   # GET /bookings/1/edit
@@ -25,10 +27,10 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
-
+    
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
+        format.html { redirect_to root_url+"?charge_station=#{@booking.charge_station_id}#station", notice: 'Booking was successfully created.' }
         format.json { render :show, status: :created, location: @booking }
       else
         format.html { render :new }
@@ -71,4 +73,5 @@ class BookingsController < ApplicationController
     def booking_params
       params.require(:booking).permit(:start_time, :name, :price_cents, :vehicle_id, :charge_station_id)
     end
+  
 end

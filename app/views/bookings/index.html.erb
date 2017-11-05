@@ -1,35 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="bookings">
 
-<h1>Bookings</h1>
+  <h5>Bookings</h5>
 
-<table>
-  <thead>
-    <tr>
-      <th>Start time</th>
-      <th>Name</th>
-      <th>Price cents</th>
-      <th>Vehicle</th>
-      <th>Charge station</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+  <div class="flex-table">
     <% @bookings.each do |booking| %>
-      <tr>
-        <td><%= booking.start_time %></td>
-        <td><%= booking.name %></td>
-        <td><%= booking.price_cents %></td>
-        <td><%= booking.vehicle %></td>
-        <td><%= booking.charge_station %></td>
-        <td><%= link_to 'Show', booking %></td>
-        <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
-        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="row">
+        <div class="pair">
+          <div class="label">Booked date</div>
+          <div class="data"><%= booking.start_time %></div>
+        </div>
+        <div class="pair">
+          <div class="label f2">Charge station</div>
+          <div class="data f2"><%= booking.charge_station.city %></div>
+        </div>
+        <div class="pair">
+          <div class="label">Time slot</div>
+          <div class="data"><%= booking.name %></div>
+        </div>
+        <div class="pair">
+          <div class="label">Price</div>
+          <div class="data"><%= booking.price.format %></div>
+        </div>
+        <div class="pair">
+          <div class="label">Vehicle</div>
+          <div class="data"><%= booking.vehicle.licence_plate %></div>
+        </div>
+        <div class="pair">
+          <div class="no-label"></div>
+          <div class="buttons">
+            <%= link_to 'Show', booking, class: 'item btn btn-success' %>
+            <%= link_to 'Edit', edit_booking_path(booking), class: 'item btn btn-warning' %>
+            <%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: 'item btn
+            btn-danger' %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Booking', new_booking_path %>
+  </div>
+</div>

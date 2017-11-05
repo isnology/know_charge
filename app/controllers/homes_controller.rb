@@ -28,43 +28,29 @@ class HomesController < ApplicationController
       @adapter_plugs = AdapterPlug.where(charge_station: @charge_station)
       @plugs = []
       @adapter_plugs.each { |plug| @plugs << Adapter.find(plug.adapter_id) }
-      @meetings = []
+      start_month = Date.new(Date.today.year, Date.today.month - 1)
+      end_month = Date.new(Date.today.year, Date.today.month + 1).end_of_month
+      @meetings = Booking.where(charge_station: @charge_station).where(start_time: (start_month..end_month))
       
-      meeting = Object.new
-      def meeting.start_time
-        Time.now
-      end
-      def meeting.name
-        "am"
-      end
-      @meetings << meeting
+      @vehicles = Vehicle.where(user: @current_user)
       
-      meeting2 = Object.new
-      def meeting2.start_time
-        Time.parse('2017-11-15')
-      end
-      def meeting2.name
-        "pm"
-      end
-      @meetings << meeting2
+      #meeting = Object.new
+      #def meeting.start_time
+      #  Time.now
+      #end
+      #def meeting.name
+      #  "am"
+      #end
+      #@meetings << meeting
       
-      meeting3 = Object.new
-      def meeting3.start_time
-        Time.parse('2017-10-31')
-      end
-      def meeting3.name
-        "pm"
-      end
-      @meetings << meeting3
-
-      meeting4 = Object.new
-      def meeting4.start_time
-        Time.parse('2017-11-17')
-      end
-      def meeting4.name
-        "all"
-      end
-      @meetings << meeting4
+      #meeting2 = Object.new
+      #def meeting2.start_time
+      #  Time.parse('2017-11-15')
+      #end
+      #def meeting2.name
+      #  "pm"
+      #end
+      #@meetings << meeting2
     end
     
   end

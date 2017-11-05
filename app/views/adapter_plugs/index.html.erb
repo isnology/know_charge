@@ -10,11 +10,11 @@
         </div>
         <div class="pair">
           <div class="no-label"></div>
-          <div class="data buttons">
-            <%= link_to 'Edit', edit_charge_station_adapter_plug_path(@charge_station, adapter_plug), class: 'btn
+          <div class="buttons">
+            <%= link_to 'Edit', edit_charge_station_adapter_plug_path(@charge_station, adapter_plug), class: 'item btn
             btn-warning' %>
             <%= link_to 'Destroy', [@charge_station, adapter_plug], method: :delete, data: { confirm: 'Are you sure?'
-            }, class: 'btn
+            }, class: 'item btn
             btn-danger' %>
           </div>
         </div>
@@ -22,7 +22,7 @@
     <% end %>
   </div>
 
-  <br>
+  <br/>
   <%= link_to 'New Adapter Plug', new_charge_station_adapter_plug_path(@charge_station), class: 'btn btn-warning' %>
   <%= link_to 'Back', charge_station_path(@charge_station), class: 'btn btn-success' %>
 </div>

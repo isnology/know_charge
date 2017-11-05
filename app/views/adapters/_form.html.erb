@@ -11,11 +11,13 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :to_plug %>
-    <%= form.text_field :to_plug, id: :adapter_to_plug %>
+  <div class="s-table">
+    <div class="across">
+      <div class="s-label">To plug</div>
+      <div class="data f2"><%= form.text_field :to_plug, id: :adapter_to_plug %></div>
+    </div>
   </div>
-
+  <br/>
   <div class="actions">
     <%= form.submit class: 'btn btn-warning' %>
   </div>

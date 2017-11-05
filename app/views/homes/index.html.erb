@@ -26,27 +26,50 @@
   </script>
 
 
-  <div id="station" class="down" >
+  <div id="station" class="item">
     <% if @charge_station.present? %>
       <h5><%= @charge_station.address %></h5>
       <div class="s-table">
         <%= render 'layouts/charge_station_details', charge_station: @charge_station, plugs: @plugs %>
       </div>
       <%= month_calendar events: @meetings do |date, meetings| %>
-        <% found = false %>
-        <% meetings.each do |meeting| %>
-          <% if meeting.name %>
-            <div class="<%= meeting.name %>"><%= date.day %></div>
-            <% found = true %>
-          <% end %>
-        <% end %>
-        <% if !found %>
+        <% if (name = booked_name(meetings)) %>
+          <div class="<%= name %>"><%= date.day %></div>
+        <% else %>
           <%= date.day %>
         <% end %>
       <% end %>
+      <div class="flex-table">
+        <% @vehicles.each do |vehicle| %>
+          <div class="row">
+            <div class="pair">
+              <div class="label">Licence Plate</div>
+              <div class="data"><%= vehicle.licence_plate %></div>
+            </div>
 
+            <div class="pair">
+              <div class="label">Make</div>
+              <div class="data"><%= vehicle.make %></div>
+            </div>
 
+            <div class="pair">
+              <div class="label">Model</div>
+              <div class="data" ><%= vehicle.model %></div>
+            </div>
 
+            <div class="pair">
+              <div class="label">Colour</div>
+              <div class="data"><%= vehicle.colour %></div>
+            </div>
+
+            <div class="pair">
+              <div class="no-label"></div>
+              <div class="buttons"><%= link_to 'Book', new_booking_path(vehicle_id: vehicle, charge_station_id: @charge_station), class:
+                  'item btn btn-warning' %></div>
+            </div>
+          </div>
+        <% end %>
+      </div>
     <% end %>
   </div>
 

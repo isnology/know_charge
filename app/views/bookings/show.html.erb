@@ -1,29 +1,31 @@
-<p id="notice"><%= notice %></p>
+<div class="bookings">
+  <div class="s-table">
+    <div class="across">
+      <div class="s-label">Booking date</div>
+      <div class="data"><%= @booking.start_time %></div>
+    </div>
 
-<p>
-  <strong>Start time:</strong>
-  <%= @booking.start_time %>
-</p>
+    <div class="across">
+      <div class="s-label">Time slot</div>
+      <div class="data"><%= @booking.name %></div>
+    </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @booking.name %>
-</p>
+    <div class="across">
+      <div class="s-label">Price</div>
+      <div class="data"><%= @booking.price.format %></div>
+    </div>
 
-<p>
-  <strong>Price cents:</strong>
-  <%= @booking.price_cents %>
-</p>
+    <div class="across">
+      <div class="s-label">Vehicle</div>
+      <div class="data"><%= @booking.vehicle.licence_plate %></div>
+    </div>
 
-<p>
-  <strong>Vehicle:</strong>
-  <%= @booking.vehicle %>
-</p>
-
-<p>
-  <strong>Charge station:</strong>
-  <%= @booking.charge_station %>
-</p>
-
-<%= link_to 'Edit', edit_booking_path(@booking) %> |
-<%= link_to 'Back', bookings_path %>
+    <div class="across">
+      <div class="s-label">Charge station</div>
+      <div class="data"> <%= @booking.charge_station.city %></div>
+    </div>
+  </div>
+  <br/>
+  <%= link_to 'Edit', edit_booking_path(@booking),class:'btn btn-warning' %>
+  <%= link_to 'Back', bookings_path, class: 'btn btn-success' %>
+</div>

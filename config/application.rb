@@ -27,6 +27,8 @@ module KnowCharge
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    
+    # added for simple calendar
     config.beginning_of_week = :sunday
   end
 end

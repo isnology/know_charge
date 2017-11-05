@@ -14,8 +14,14 @@ module ApplicationHelper
         'My Vehicles'
       when 'charge_stations'
         'My Charge Stations'
+      when 'bookings'
+        'My Bookings'
       when 'favourites'
         'My Favourites'
+      when 'adapter_plugs'
+        'Adapter Plugs'
+      when 'adapters'
+        'Adapters'
       else
         ''
     end

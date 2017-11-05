@@ -11,32 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :start_time %>
-    <%= form.date_select :start_time, id: :booking_start_time %>
-  </div>
+  <%= form.hidden_field :vehicle_id, id: :booking_vehicle_id %>
+  <%= form.hidden_field :charge_station_id, id: :booking_charge_station_id %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :booking_name %>
-  </div>
+  <div class="s-table">
+    <div class="across">
+      <div class="s-label">Booking date</div>
+      <div class="data f2"><%= form.date_field :start_time, id: :booking_start_time %></div>
+    </div>
 
-  <div class="field">
-    <%= form.label :price_cents %>
-    <%= form.number_field :price_cents, id: :booking_price_cents %>
-  </div>
+    <div class="across">
+      <div class="s-label">Time slot</div>
+      <div class="data f2"><%= form.select :name, ['am', 'pm'], id: :booking_name %></div>
+    </div>
 
-  <div class="field">
-    <%= form.label :vehicle_id %>
-    <%= form.text_field :vehicle_id, id: :booking_vehicle_id %>
+    <div class="across">
+      <div class="s-label">Price (cents)</div>
+      <div class="data f2"><%= form.number_field :price_cents, id: :booking_price_cents %></div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :charge_station_id %>
-    <%= form.text_field :charge_station_id, id: :booking_charge_station_id %>
-  </div>
-
+  <br/>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-warning' %>
   </div>
 <% end %>

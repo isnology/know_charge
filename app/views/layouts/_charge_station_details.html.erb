@@ -1,38 +1,38 @@
 
 <div class="across">
-  <div class="s-label f4">Charge kw/h:</div>
+  <div class="s-label f4">Charge kw/h</div>
   <div class="data f5"><%= charge_station.charge_kwh %></div>
 </div>
 
 <div class="across">
-  <div class="s-label f4">Adapter:</div>
+  <div class="s-label f4">Adapter</div>
   <div class="data f5"><%= charge_station.adapter.to_plug %></div>
 </div>
 
 <div class="across">
-  <div class="s-label f4">Open time:</div>
+  <div class="s-label f4">Open time</div>
   <div class="data f5"><%= charge_station.open_time.strftime("%I:%M %p") %></div>
 </div>
 
 <div class="across">
-  <div class="s-label f4">Close time:</div>
+  <div class="s-label f4">Close time</div>
   <div class="data f5"><%= charge_station.close_time.strftime("%I:%M %p") %></div>
 </div>
 
 <div class="across">
-  <div class="s-label f4">Days of week:</div>
+  <div class="s-label f4">Days of week</div>
   <div class="data f5"><%= to_days charge_station.days_of_week %></div>
 </div>
 
 <div class="across">
-  <div class="s-label f4">Price kw/h:</div>
+  <div class="s-label f4">Price kw/h</div>
   <div class="data f5"><%= charge_station.price_kwh.format %></div>
 </div>
 
 <% if plugs.present? %>
   <% plugs.each do | plug | %>
     <div class="across">
-      <div class="s-label">Converter Plug To:</div>
+      <div class="s-label">Converter Plug To</div>
       <div class="data"><%= plug.to_plug %></div>
     </div>
   <% end %>

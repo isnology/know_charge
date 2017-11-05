@@ -12,6 +12,10 @@ $dark: black;
   margin: 0;
 }
 
+thead {
+  background: lightblue;
+}
+
 .main {
   width: 95%;
   margin: 0 auto;
@@ -64,6 +68,22 @@ $dark: black;
   min-width: 8em;
 }
 
+.buttons {
+  display: flex;
+  flex-flow: row;
+  flex: 2;
+  align-items: center;
+  min-height: 2.5em;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+}
+
+label {
+  background: lightblue;
+  padding: 5px;
+  width: 8em;
+}
+
 // my flex-box table
 .flex-table {
   display: flex;
@@ -77,7 +97,7 @@ $dark: black;
   display: flex;
   flex-flow: column;
   flex: 1;
-  border-bottom: 1px solid white;
+  border-bottom: 2px solid white;
 }
 .row:last-child {
   border-bottom: 0;
@@ -97,7 +117,6 @@ $dark: black;
 
 .data {
   flex: 1;
-
   border-top: 1px solid white;
   border-left: 1px solid white;
   padding: 3px;
@@ -164,6 +183,7 @@ body {
   transition: 1s ease-in-out;
   cursor: pointer;
   z-index: 20;
+  background: $darker-blue;
 }
 
 #nav-icon span {
@@ -239,7 +259,7 @@ body {
     border-bottom: 1px solid $darker-blue;
   }
   .head {
-    margin-top: 4.9em;
+    margin-top: 3em;
     display: block;
     text-align: center;
     font-size: 29px;
@@ -258,10 +278,6 @@ body {
 
 #nav-check:checked ~ .menu {
   transform: translateY(0px);
-}
-
-thead {
-  background: lightblue;
 }
 
 .header-bar {
@@ -302,14 +318,6 @@ thead {
   margin: 2px;
 }
 
-.buttons {
-  flex: 2;
-  align-items: center;
-  min-height: 2.5em;
-  border-top: 1px solid white;
-  border-left: 1px solid white;
-}
-
 .homes {
   h5 {
     text-align: center;
@@ -323,6 +331,8 @@ thead {
 
 .simple-calendar {
   margin: 0 auto;
+  margin-top: .5em;
+  max-width: 18em;
   th {
     padding: 3px;
     text-align: center;
@@ -336,13 +346,13 @@ thead {
       &.has-events {
         .am {
           display: block;
-          background: linear-gradient(90deg, $darker-blue, $darker-blue, #ffffd4, #ffffd4, #ffffd4);
+          background: linear-gradient(90deg, $darker-blue, $darker-blue,  #ffffd4, #ffffd4);
           width: 100%;
           height: 100%;
         }
         .pm {
           display: block;
-          background: linear-gradient(90deg, #ffffd4, #ffffd4, #ffffd4, $darker-blue, $darker-blue);
+          background: linear-gradient(90deg, #ffffd4, #ffffd4, $darker-blue, $darker-blue);
           width: 100%;
           height: 100%;
         }
@@ -351,17 +361,17 @@ thead {
     &.has-events {
       .am {
         display: block;
-        background: linear-gradient(90deg, $darker-blue, $darker-blue, lightgray, lightgray, lightgray);
+        background: linear-gradient(90deg, $darker-blue, $darker-blue, lightgray, lightgray);
         width: 100%;
         height: 100%;
       }
       .pm {
         display: block;
-        background: linear-gradient(90deg, lightgray, lightgray, lightgray, $darker-blue, $darker-blue);
+        background: linear-gradient(90deg, lightgray, lightgray, $darker-blue, $darker-blue);
         width: 100%;
         height: 100%;
       }
-      .all {
+      .ampm {
         display: block;
         background: $darker-blue;
         width: 100%;
@@ -373,13 +383,13 @@ thead {
       &.has-events {
         .am {
           display: block;
-          background: linear-gradient(90deg, $darker-blue, $darker-blue, $yellow, $yellow, $yellow);
+          background: linear-gradient(90deg, $darker-blue, $darker-blue, $yellow, $yellow);
           width: 100%;
           height: 100%;
         }
         .pm {
           display: block;
-          background: linear-gradient(90deg, $yellow, $yellow, $yellow, $darker-blue, $darker-blue);
+          background: linear-gradient(90deg, $yellow, $yellow, $darker-blue, $darker-blue);
           width: 100%;
           height: 100%;
         }
@@ -391,18 +401,11 @@ thead {
   }
 }
 
-
 .profiles {
-  label {
-    width: 7em;
-  }
 
 }
 
 .vehicles {
-  label {
-    width: 12em;
-  }
   .s-label {
     min-width: 9em;
   }
@@ -414,7 +417,7 @@ thead {
 .adapters
 {
   .flex-table {
-    max-width: 24em;
+    max-width: 26em;
   }
   .label {
     min-width: 8em;
@@ -426,11 +429,50 @@ thead {
 
 .charge_stations
 {
-  label {
-    width: 7em;
-  }
   .flex-table {
     max-width: 50em;
+  }
+}
+
+.bookings {
+ .flex-table {
+   max-width: 70em;
+ }
+}
+
+@media (min-width: 400px) {
+  .adapters {
+    // my flex-box table
+    .row {
+      display: flex;
+      flex-flow: row wrap;
+      flex: 1;
+      border-bottom: 0;
+    }
+    .label, .no-label {
+      display: none;
+      min-height: 2em;
+      max-height: 2em;
+    }
+    .flex-table .row:first-child .pair {
+      .label {
+        display: flex;
+      }
+      .no-label {
+        display: flex;
+        flex: 1;
+        border-top: 1px solid white;
+        border-left: 1px solid white;
+        padding: 3px;
+        background: lightblue;
+      }
+    }
+    .pair {
+      display: flex;
+      flex-flow: column;
+      flex: 1;
+    }
+    // end flex-box table
   }
 }
 
@@ -462,13 +504,19 @@ thead {
       border-bottom: 0;
     }
     .nav1 {
-      width: 5em;
+      width: 4.5em;
     }
     .nav2 {
-      width: 8em;
+      width: 6em;
     }
     .nav3 {
-      width: 12em;
+      width: 7em;
+    }
+    .nav4 {
+      width: 7.5em;
+    }
+    .nav5 {
+      width: 11em;
     }
     .head {
       display: none;
@@ -482,40 +530,43 @@ thead {
     }
   }
 
+  :not(.adapters) {
+    // my flex-box table
+    .row {
+      display: flex;
+      flex-flow: row;
+      flex: 1;
+      border-bottom: 0;
+    }
+    .label, .no-label {
+      display: none;
+      min-height: 2em;
+      max-height: 2em;
+    }
+    .flex-table .row:first-child .pair {
+      .label {
+        display: flex;
+      }
+      .no-label {
+        display: flex;
+        flex: 1;
+        border-top: 1px solid white;
+        border-left: 1px solid white;
+        padding: 3px;
+        background: lightblue;
+      }
+    }
+    .pair {
+      display: flex;
+      flex-flow: column;
+      flex: 1;
+    }
+    // end flex-box table
+  }
+
   .flex-main {
     flex-flow: row wrap;
   }
-
-  // my flex-box table
-  .row {
-    display: flex;
-    flex-flow: row wrap;
-    flex: 1;
-  }
-  .label, .no-label {
-    display: none;
-    min-height: 2em;
-    max-height: 2em;
-  }
-  .flex-table .row:first-child .pair {
-    .label {
-      display: flex;
-    }
-    .no-label {
-      display: flex;
-      flex: 1;
-      border-top: 1px solid white;
-      border-left: 1px solid white;
-      padding: 3px;
-      background: lightblue;
-    }
-  }
-  .pair {
-    display: flex;
-    flex-flow: column;
-    flex: 1;
-  }
-  // end flex-box table
 
   #map {
     margin-top: .3em;
@@ -523,8 +574,20 @@ thead {
     width: 45vw;
   }
 
-  .space {
-    flex: 1;
+  #station {
+    .flex-table {
+      margin: 0 auto;
+      max-width: 35em;
+      .label {
+        min-width: 6.8em;
+      }
+      .data {
+        min-width: 6.8em;
+      }
+      .buttons {
+        min-width: 5em;
+      }
+    }
   }
 
 }

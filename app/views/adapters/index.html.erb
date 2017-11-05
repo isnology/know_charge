@@ -1,27 +1,27 @@
 <div class="adapters">
 
-<h5>Adapters</h5>
+  <h5>Adapters</h5>
 
-<table class="table  table-striped table-bordered">
-  <thead>
-    <tr>
-      <th>To plug</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+  <div class="flex-table">
     <% @adapters.each do |adapter| %>
-      <tr>
-        <td><%= adapter.to_plug %></td>
-        <td><%= link_to 'Edit', edit_adapter_path(adapter), class: 'btn btn-warning' %></td>
-        <td><%= link_to 'Destroy', adapter, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn
-        btn-danger' %></td>
-      </tr>
+      <div class="row">
+        <div class="pair">
+          <div class="label">To plug</div>
+          <div class="data"><%= adapter.to_plug %></div>
+        </div>
+        <div class="pair">
+          <div class="no-label"></div>
+          <div class="buttons">
+            <%= link_to 'Edit', edit_adapter_path(adapter), class: 'item btn btn-warning' %>
+            <%= link_to 'Destroy', adapter, method: :delete, data: { confirm: 'Are you sure?' }, class: ' item btn
+          btn-danger' %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
-<br>
+  <br/>
 
-<%= link_to 'New Adapter', new_adapter_path, class: 'btn btn-warning' %>
+  <%= link_to 'New Adapter', new_adapter_path, class: 'btn btn-warning' %>
+</div>

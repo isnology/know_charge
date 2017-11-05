@@ -10,12 +10,13 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :adapter_id %>
-    <%= form.collection_select :adapter_id, Adapter.order(:to_plug), :id, :to_plug %>
+  <div class="s-table">
+    <div class="across">
+      <div class="s-label">Adapter</div>
+      <div class="data f2"><%= form.collection_select :adapter_id, Adapter.order(:to_plug), :id, :to_plug %></div>
+    </div>
   </div>
-
+  <br/>
   <div class="actions">
     <%= form.submit class: 'btn btn-warning' %>
   </div>
