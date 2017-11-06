@@ -1,4 +1,4 @@
-<div class="profiles">
+
   <div class="s-table">
     <figure class="data">
       <% if @profile.image.present? %>
@@ -37,9 +37,6 @@
       <div class="s-label">State</div>
       <div class="data" ><%= @profile.state %></div>
     </div>
-    <div class="across buttons">
-      <%= link_to 'Edit', edit_profile_path(@profile), class: 'item btn btn-warning' %>
-    </div>
   </div>
-  <div class="item f3"></div>
-</div>
+
+  <%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-warning' %>

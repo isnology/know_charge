@@ -22,12 +22,14 @@
         <span></span>
       </label>
       <div class="menu">
-        <%= link_to 'Home', root_url, class: "nav1 #{set_target('homes')}" %>
-        <%= link_to 'My Details', profiles_path, class: "nav2 #{set_target('profiles')}" %>
-        <%= link_to 'My Vehicles', vehicles_path, class: "nav3 #{set_target('vehicles')}" %>
-        <%= link_to 'My Charge Stations', charge_stations_path, class: "nav5 #{set_target('charge_stations')}" %>
-        <%= link_to 'My Bookings', bookings_path, class: "nav3 #{set_target('bookings')}" %>
-        <%= link_to 'My Favourites', '#', class: "nav4 #{set_target('favourites')}" %>
+        <nav>
+          <%= link_to 'Home', root_url, class: "nav1 #{set_target('homes')}" %>
+          <%= link_to 'My Details', profiles_path, class: "nav2 #{set_target('profiles')}" %>
+          <%= link_to 'My Vehicles', vehicles_path, class: "nav3 #{set_target('vehicles')}" %>
+          <%= link_to 'My Charge Stations', charge_stations_path, class: "nav5 #{set_target('charge_stations')}" %>
+          <%= link_to 'My Bookings', bookings_path, class: "nav3 #{set_target('bookings')}" %>
+          <%= link_to 'My Favourites', '#', class: "nav4 #{set_target('favourites')}" %>
+        </nav>
         <div class="head">
           <div class="text"><%= set_heading %></div>
         </div>
@@ -47,10 +49,12 @@
       <div class="item"></div>
     </div>
     <div class="main">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <div class="<%= controller_name %>">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
 
-      <%= yield %>
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

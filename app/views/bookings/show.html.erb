@@ -1,31 +1,30 @@
-<div class="bookings">
-  <div class="s-table">
-    <div class="across">
-      <div class="s-label">Booking date</div>
-      <div class="data"><%= @booking.start_time %></div>
-    </div>
 
-    <div class="across">
-      <div class="s-label">Time slot</div>
-      <div class="data"><%= @booking.name %></div>
-    </div>
-
-    <div class="across">
-      <div class="s-label">Price</div>
-      <div class="data"><%= @booking.price.format %></div>
-    </div>
-
-    <div class="across">
-      <div class="s-label">Vehicle</div>
-      <div class="data"><%= @booking.vehicle.licence_plate %></div>
-    </div>
-
-    <div class="across">
-      <div class="s-label">Charge station</div>
-      <div class="data"> <%= @booking.charge_station.city %></div>
-    </div>
+<div class="s-table">
+  <div class="across">
+    <div class="s-label">Booking date</div>
+    <div class="data"><%= @booking.start_time %></div>
   </div>
-  <br/>
-  <%= link_to 'Edit', edit_booking_path(@booking),class:'btn btn-warning' %>
-  <%= link_to 'Back', bookings_path, class: 'btn btn-success' %>
+
+  <div class="across">
+    <div class="s-label">Time slot</div>
+    <div class="data"><%= @booking.name %></div>
+  </div>
+
+  <div class="across">
+    <div class="s-label">Price</div>
+    <div class="data"><%= @booking.price.format %></div>
+  </div>
+
+  <div class="across">
+    <div class="s-label">Vehicle</div>
+    <div class="data"><%= @booking.vehicle.licence_plate %></div>
+  </div>
+
+  <div class="across">
+    <div class="s-label">Charge station</div>
+    <div class="data"> <%= @booking.charge_station.city %></div>
+  </div>
 </div>
+
+<%= link_to 'Edit', edit_booking_path(@booking),class:'btn btn-warning' %>
+<%= link_to 'Back', bookings_path, class: 'btn btn-success' %>

@@ -1,7 +1,11 @@
 module ApplicationHelper
   
   def set_target(action)
-    action == controller_name ? 'target' : ''
+    if action == controller_name or (action == 'charge_stations' && controller_name =~ /adapter/)
+      'target'
+    else
+      ''
+    end
   end
   
   def set_heading

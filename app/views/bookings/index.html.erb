@@ -10,8 +10,8 @@
           <div class="data"><%= booking.start_time %></div>
         </div>
         <div class="pair">
-          <div class="label f2">Charge station</div>
-          <div class="data f2"><%= booking.charge_station.city %></div>
+          <div class="label">Charge station</div>
+          <div class="data"><%= booking.charge_station.city %></div>
         </div>
         <div class="pair">
           <div class="label">Time slot</div>
@@ -30,7 +30,7 @@
           <div class="buttons">
             <%= link_to 'Show', booking, class: 'item btn btn-success' %>
             <%= link_to 'Edit', edit_booking_path(booking), class: 'item btn btn-warning' %>
-            <%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: 'item btn
+            <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: 'item btn
             btn-danger' %>
           </div>
         </div>

@@ -6,6 +6,7 @@ $darker-blue: #28C2DB;
 $green: #A3F6A4;
 $yellow: #C8F761;
 $dark: black;
+$width: 60em;
 
 * {
   padding: 0;
@@ -20,6 +21,7 @@ thead {
   width: 95%;
   margin: 0 auto;
   padding-top: 2em;
+  text-align: center;
 }
 
 #map {
@@ -54,6 +56,7 @@ thead {
   display: flex;
   flex: 1;
   flex-flow: column;
+  margin: 0 auto;
   border-right: 1px solid white;
   border-bottom: 1px solid white;
   max-width: 24em;
@@ -65,7 +68,8 @@ thead {
   border-left: 1px solid white;
   padding: 3px;
   background: lightblue;
-  min-width: 8em;
+  min-width: 5em;
+  text-align: left;
 }
 
 .buttons {
@@ -84,11 +88,16 @@ label {
   width: 8em;
 }
 
+input[type="text"] {
+  max-width: 12em;
+}
+
 // my flex-box table
 .flex-table {
   display: flex;
   flex-flow: column;
   flex: 1;
+  margin: 0 auto;
   padding: 0 15px 0 15px;
   border-right: 1px solid white;
   border-bottom: 1px solid white;
@@ -113,6 +122,7 @@ label {
   border-left: 1px solid white;
   padding: 3px;
   background: lightblue;
+  text-align: left;
 }
 
 .data {
@@ -120,7 +130,8 @@ label {
   border-top: 1px solid white;
   border-left: 1px solid white;
   padding: 3px;
-  min-width: 10em;
+  min-width: 8em;
+  text-align: left;
 }
 // end flex-box table
 
@@ -321,7 +332,8 @@ body {
 }
 
 .btn {
-  margin: 2px;
+  margin: 5px;
+  min-width: 5em;
 }
 
 .homes {
@@ -405,47 +417,46 @@ body {
   .calendar-heading {
     text-align: center;
   }
+
+  .btn {
+    margin: 5px;
+    min-width: 4em;
+  }
 }
 
 .profiles {
-
+  margin: 0 auto;
+  width: 22em;
 }
 
 .vehicles {
-  .s-label {
-    min-width: 9em;
-  }
-  .flex-table {
-    max-width: 50em;
-  }
-}
-
-.adapters {
-  .flex-table {
-    max-width: 26em;
-  }
-  .label {
-    min-width: 8em;
-  }
-  .w1 {
-    min-width: 7em;
+  margin: 0 auto;
+  max-width: 50em;
+  input[type="text"] {
+    max-width: 10em;
   }
 }
 
 .charge_stations {
+  margin: 0 auto;
+}
+
+.adapters, .adapter_plugs {
+  margin: 0 auto;
   .flex-table {
-    max-width: 50em;
+    max-width: 26em;
   }
 }
 
 .bookings {
- .flex-table {
-   max-width: 70em;
- }
+  margin: 0 auto;
+  input[type="number"] {
+    max-width: 13em;
+  }
 }
 
-@media (min-width: 400px) {
-  .adapters {
+@media (min-width: 300px) {
+  .adapters, .adapter_plugs {
     // my flex-box table
     .row {
       display: flex;
@@ -491,9 +502,15 @@ body {
     position: absolute;
     top: 2.5em;
     left: 0;
-    width: 100%;
+    right: 0;
     height: 40px;
 
+    nav {
+      position: relative;
+      margin: 0 auto;
+      max-width: $width;
+      text-align: center;
+    }
     a {
       display: inline-block;
       height: 20px;
@@ -520,7 +537,7 @@ body {
       width: 7.5em;
     }
     .nav5 {
-      width: 11em;
+      width: 10em;
     }
     .head {
       display: none;
@@ -534,7 +551,7 @@ body {
     }
   }
 
-  :not(.adapters) {
+  :not(.adapters) :not(.adpater_plugs) {
     // my flex-box table
     .row {
       display: flex;
@@ -594,4 +611,16 @@ body {
     }
   }
 
+  .charge_stations {
+    .flex-table {
+      max-width: 50em;
+    }
+  }
+
+  .bookings {
+    width: 65em;
+    .flex-table {
+      max-width: 70em;
+    }
+  }
 }
