@@ -26,9 +26,14 @@ thead {
   text-align: center;
 }
 
+#search {
+  min-width: 15em;
+}
+
 #map {
-  height: 70vh;
+  height: 68vh;
   width: 98vw;
+  margin: 0 auto;
   border: 1px solid white;
 }
 
@@ -481,6 +486,13 @@ body {
   }
 }
 
+.favourites {
+  margin: 0 auto;
+  .flex-table {
+    max-width: 46em;
+  }
+}
+
 @media (min-width: 300px) {
   .adapters, .adapter_plugs {
     // my flex-box table
@@ -627,8 +639,11 @@ body {
 
   #map {
     margin-top: .3em;
-    height: 85vh;
+    height: 80vh;
     width: 45vw;
+  }
+  #search {
+    min-width: 25em;
   }
 
   #station {

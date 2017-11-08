@@ -3,6 +3,20 @@ class HomesController < ApplicationController
   before_action :check_profile
   
   def index
+    @me = current_user.profile
+    @lat_center = @me.latitude
+    @long_center = @me.longitude
+    
+    if @search = params[:search]
+      result = Geocoder.search(@search)
+      if result.present?
+        if result[0].data['geometry']['location'].present?
+          @lat_center = result[0].data['geometry']['location']['lat']
+          @long_center = result[0].data['geometry']['location']['lng']
+        end
+      end
+    end
+    
     @locations = []
     @stations = ChargeStation.all
     @stations.each do |station|
@@ -18,9 +32,9 @@ class HomesController < ApplicationController
     #  @lat_center = result[0].data['latitude']
     #  @long_center = result[0].data['longitude']
     #else
-      @me = current_user.profile
-      @lat_center = @me.latitude
-      @long_center = @me.longitude
+    #  @me = current_user.profile
+    #  @lat_center = @me.latitude
+    #  @long_center = @me.longitude
     #end
 
     if params[:charge_station].present?
@@ -45,5 +59,9 @@ class HomesController < ApplicationController
       unless current_user.profile
         redirect_to new_profile_path
       end
+    end
+
+    def home_params
+      params.permit(:charge_station, :search)
     end
 end

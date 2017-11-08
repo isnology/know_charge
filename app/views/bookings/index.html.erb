@@ -6,7 +6,7 @@
     <div class="row <%= station_bookings(booking) %>">
       <div class="pair">
         <div class="label">Booked date</div>
-        <div class="data"><%= booking.start_time %></div>
+        <div class="data"><%= link_to booking.start_time, booking, class: 'btn btn-success' %></div>
       </div>
       <div class="pair">
         <div class="label">Charge station</div>
@@ -27,7 +27,8 @@
       <div class="pair">
         <div class="no-label"></div>
         <div class="buttons">
-          <%= link_to 'Show', booking, class: 'item btn btn-success' %>
+          <%= button_to 'Add Fav.', favourites_path(booking_id: booking.id, method: :post), class: 'item btn
+          btn-warning' %>
           <%= link_to 'Edit', edit_booking_path(booking), class: 'item btn btn-warning' %>
           <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: 'item btn
           btn-danger' %>

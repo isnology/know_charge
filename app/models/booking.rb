@@ -15,6 +15,7 @@
 class Booking < ApplicationRecord
   belongs_to :vehicle
   belongs_to :charge_station
+  has_many :favourites, dependent: :destroy
   
   validate :check_time_slot
 

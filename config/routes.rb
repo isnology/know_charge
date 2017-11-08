@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :bookings
   resources :conversations, only: [:index, :create]
   resources :messages, only: [:index, :create]
+  resources :favourites, only: [:index, :create, :destroy]
   
   mount ActionCable.server => '/cable'
   

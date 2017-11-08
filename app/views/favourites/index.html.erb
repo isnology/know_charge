@@ -1,0 +1,39 @@
+
+<h5>Favourites</h5>
+
+<div class="flex-table">
+  <% @favourites.each do |favourite| %>
+    <div class="row">
+      <div class="pair">
+        <div class="label">Booking - Favourite</div>
+        <div class="data"><%= favourite.booking.charge_station.full_address %></div>
+      </div>
+      <div class="pair">
+        <div class="no-label"></div>
+        <div class="buttons">
+          <%= link_to 'Book', new_booking_path(charge_station_id: favourite.booking.charge_station_id, vehicle_id:
+                                                                  favourite.booking.vehicle_id), class: ' item btn btn-warning' %>
+          <%= link_to 'Delete', favourite, method: :delete, data: { confirm: 'Are you sure?' }, class: ' item btn btn-danger' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="flex-table">
+  <% @bookings.each do |booking| %>
+    <div class="row">
+      <div class="pair">
+        <div class="label">Booking - Most Recent</div>
+        <div class="data"><%= booking.charge_station.full_address %></div>
+      </div>
+      <div class="pair">
+        <div class="no-label"></div>
+        <div class="buttons">
+          <%= link_to 'Book', new_booking_path(charge_station_id: booking.charge_station_id, vehicle_id:
+                                              booking.vehicle_id), class: ' item btn btn-warning' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
