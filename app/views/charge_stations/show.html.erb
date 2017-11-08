@@ -30,4 +30,5 @@
 <%= link_to 'Edit', edit_charge_station_path(@charge_station), class: 'btn btn-warning' %>
 <%= link_to 'Back', charge_stations_path, class: 'item btn btn-success' %>
 <%= link_to 'Adapter plugs', charge_station_adapter_plugs_path(@charge_station), class: 'btn btn-warning' %>
-
+<%= button_to 'Chat', conversations_path(charge_station_id: @charge_station, method: :post), class: 'btn
+      btn-warning' %>

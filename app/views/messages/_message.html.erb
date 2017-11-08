@@ -1,0 +1,9 @@
+<div class="message">
+  <div #id="justify" class="<%= justify_msg(@my_id, @other_id, message) %>">
+    <div class="message-user">
+    </div>
+    <div class="message-content">
+      <%= sanitize markdown_to_html(message.content) %>
+    </div>
+  </div>
+</div>

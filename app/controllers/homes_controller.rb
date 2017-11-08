@@ -1,8 +1,8 @@
 class HomesController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_profile
   
   def index
-    
     @locations = []
     @stations = ChargeStation.all
     @stations.each do |station|
@@ -30,28 +30,20 @@ class HomesController < ApplicationController
       @adapter_plugs.each { |plug| @plugs << Adapter.find(plug.adapter_id) }
       start_month = Date.new(Date.today.year, Date.today.month - 1)
       end_month = Date.new(Date.today.year, Date.today.month + 1).end_of_month
-      @meetings = Booking.where(charge_station: @charge_station).where(start_time: (start_month..end_month))
+      @bookings = Booking.where(charge_station: @charge_station).where(start_time: (start_month..end_month))
       
       @vehicles = Vehicle.where(user: @current_user)
       
-      #meeting = Object.new
-      #def meeting.start_time
-      #  Time.now
-      #end
-      #def meeting.name
-      #  "am"
-      #end
-      #@meetings << meeting
-      
-      #meeting2 = Object.new
-      #def meeting2.start_time
-      #  Time.parse('2017-11-15')
-      #end
-      #def meeting2.name
-      #  "pm"
-      #end
-      #@meetings << meeting2
+      session[:conversations_rtn] = "#{root_url}?charge_station=#{@charge_station.id}#station"
+      session[:messages_rtn] = session[:conversations_rtn]
     end
-    
   end
+  
+  private
+  
+    def check_profile
+      unless current_user.profile
+        redirect_to new_profile_path
+      end
+    end
 end

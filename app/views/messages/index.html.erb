@@ -1,0 +1,9 @@
+<% provide(:extra_body_attributes, "data-room-name=#{@conversation.id} data-id-name=#{@code}" ) %>
+<h6 id="chat">Chat with <%= @code == 'a' ? @conversation.charge_station.small_address : @conversation.user.profile
+    .full_name
+%></h6>
+<div class="message-wr">
+  <%= render 'messages' %>
+  <%= render 'message_form' %>
+  <%= link_to 'Back', came_from_url(controller_name), class: 'btn btn-success'%>
+</div>

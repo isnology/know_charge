@@ -24,7 +24,8 @@
 class ChargeStation < ApplicationRecord
   belongs_to :adapter
   belongs_to :user
-  has_many :adapter_plugs
+  has_many :adapter_plugs, dependent: :destroy
+  has_many :conversations, dependent: :destroy
   
   monetize :price_kwh_cents
 
@@ -38,5 +39,9 @@ class ChargeStation < ApplicationRecord
   
   def full_address
     address << ', Australia'
+  end
+  
+  def small_address
+    "#{street_number} #{street} #{city}"
   end
 end

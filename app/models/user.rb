@@ -24,4 +24,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_one :profile, dependent: :destroy
   has_many :vehicles, dependent: :destroy
+  has_many :charge_stations, dependent: :destroy
+  has_many :conversations, dependent: :destroy
 end

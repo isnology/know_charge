@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   
-  
   root 'homes#index'
   devise_for :users
-  get 'homes/index'
+  #get 'homes/index'
   
   # hide profile id, Note user set to dependent: :destroy so no destroy route
   get 'profiles/new' => 'profiles#new', as: 'new_profile'
@@ -19,6 +18,10 @@ Rails.application.routes.draw do
     resources :adapter_plugs, only: [:index, :new, :create, :edit, :update, :destroy]
   end
   resources :bookings
+  resources :conversations, only: [:index, :create]
+  resources :messages, only: [:index, :create]
+  
+  mount ActionCable.server => '/cable'
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

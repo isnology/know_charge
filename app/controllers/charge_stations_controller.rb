@@ -5,7 +5,7 @@ class ChargeStationsController < ApplicationController
   # GET /charge_stations
   # GET /charge_stations.json
   def index
-    @charge_stations = ChargeStation.all
+    @charge_stations = ChargeStation.where(user: current_user)
   end
 
   # GET /charge_stations/1
@@ -14,6 +14,8 @@ class ChargeStationsController < ApplicationController
     @adapter_plugs = AdapterPlug.where(charge_station: @charge_station)
     @plugs = []
     @adapter_plugs.each { |plug| @plugs << Adapter.find(plug.adapter_id) }
+    session[:conversations_rtn] = charge_station_path(@charge_station)
+    session[:messages_rtn] = session[:conversations_rtn]
   end
 
   # GET /charge_stations/new

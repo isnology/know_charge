@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171104105016) do
+ActiveRecord::Schema.define(version: 20171106084451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,26 @@ ActiveRecord::Schema.define(version: 20171104105016) do
     t.float "longitude"
     t.index ["adapter_id"], name: "index_charge_stations_on_adapter_id"
     t.index ["user_id"], name: "index_charge_stations_on_user_id"
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.bigint "charge_station_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["charge_station_id"], name: "index_conversations_on_charge_station_id"
+    t.index ["user_id"], name: "index_conversations_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.boolean "read"
+    t.bigint "conversation_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -117,6 +137,10 @@ ActiveRecord::Schema.define(version: 20171104105016) do
   add_foreign_key "bookings", "vehicles"
   add_foreign_key "charge_stations", "adapters"
   add_foreign_key "charge_stations", "users"
+  add_foreign_key "conversations", "charge_stations"
+  add_foreign_key "conversations", "users"
+  add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "vehicles", "users"
 end

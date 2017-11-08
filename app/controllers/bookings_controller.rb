@@ -4,7 +4,10 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = Booking.all.order({start_time: :desc}, :charge_station_id, :name)
+    vehicles = Vehicle.where(user: current_user)
+    stations = ChargeStation.where(user: current_user)
+    @bookings = Booking.where(vehicle_id: vehicles).or(
+                Booking.where(charge_station_id: stations)).order({start_time: :desc}, :charge_station_id, :name)
   end
 
   # GET /bookings/1

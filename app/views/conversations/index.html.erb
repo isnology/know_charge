@@ -1,0 +1,33 @@
+
+<h5>Conversations</h5>
+
+<div class="flex-table">
+  <% @conversations.each do |conversation| %>
+    <div class="row">
+      <div class="pair">
+        <div class="label">Charge station</div>
+        <div class="data"><%= conversation.charge_station.city %></div>
+      </div>
+      <div class="pair">
+        <div class="label">User</div>
+        <div class="data"><%= conversation.user.profile.full_name %></div>
+      </div>
+      <div class="pair">
+        <div class="no-label"></div>
+        <div class="buttons"><%= link_to 'Messages', messages_path(conversation_id: conversation.id),
+          class: 'item btn btn-warning' %></div>
+      </div>
+    </div>
+    <div class="s-table">
+      <% @messages[conversation.id].each do |message| %>
+        <div class="across">
+          <div class="s-label">Message</div>
+          <div class="data"><%= message.content %></div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to 'Back',came_from_url(controller_name), class: 'btn btn-success' %>
+

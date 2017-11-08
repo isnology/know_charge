@@ -36,4 +36,15 @@ module ApplicationHelper
     week.split('').map { |day| days[day.to_i] }.join(' ')
   end
   
+  def came_from_url(controller)
+    key = "#{controller}_rtn".to_sym
+    session[key] ? session[key] : root_url
+  end
+  
+  def left_or_right(default, opposite)
+    if @charge_station && @charge_station.user != current_user
+       return opposite
+    end
+    default
+  end
 end

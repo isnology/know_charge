@@ -32,4 +32,5 @@ class Profile < ApplicationRecord
   def full_address
     "#{street_number} #{street} #{city}, #{state}, Australia"
   end
+  
 end

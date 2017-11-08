@@ -31,13 +31,17 @@
       <div class="s-table">
         <%= render 'layouts/charge_station_details', charge_station: @charge_station, plugs: @plugs %>
       </div>
-      <%= month_calendar events: @meetings do |date, meetings| %>
-        <% if (name = booked_name(meetings)) %>
+      <%= month_calendar events: @bookings do |date, bookings| %>
+        <% if (name = booked_name(bookings)) %>
           <div class="<%= name %>"><%= date.day %></div>
         <% else %>
           <%= date.day %>
         <% end %>
       <% end %>
+
+      <%= button_to 'Chat', conversations_path(charge_station_id: @charge_station, method: :post), class: 'btn
+      btn-warning' %>
+
       <div class="flex-table">
         <% @vehicles.each do |vehicle| %>
           <div class="row">
@@ -69,7 +73,9 @@
           </div>
         <% end %>
       </div>
-    <% end %>
+
+
+  <% end %>
   </div>
 
 

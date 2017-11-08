@@ -1,0 +1,9 @@
+<div class="message-input">
+  <%= form_with(model: @message, remote: true, id: 'sendmsg') do |f| %>
+    <div class="across">
+      <%= f.text_area :content, class: 'item', id: 'msgtextarea' %>
+      <%= f.submit "Send", class: 'item btn btn-warning', id: 'btnsubmit' %>
+    </div>
+    <%= f.hidden_field :conversation_id %>
+  <% end %>
+</div>
