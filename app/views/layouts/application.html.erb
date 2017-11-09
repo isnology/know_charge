@@ -24,11 +24,12 @@
       <div class="menu">
         <nav>
           <%= link_to 'Home', root_url, class: "nav1 #{set_target('homes')}" %>
-          <%= link_to 'My Details', profiles_path, class: "nav2 #{set_target('profiles')}" %>
-          <%= link_to 'My Vehicles', vehicles_path, class: "nav3 #{set_target('vehicles')}" %>
-          <%= link_to 'My Charge Stations', charge_stations_path, class: "nav5 #{set_target('charge_stations')}" %>
-          <%= link_to 'My Bookings', bookings_path, class: "nav3 #{set_target('bookings')}" %>
-          <%= link_to 'My Favourites', favourites_path, class: "nav4 #{set_target('favourites')}" %>
+          <%= link_to 'Details', profiles_path, class: "nav2 #{set_target('profiles')}" %>
+          <%= link_to 'Vehicles', vehicles_path, class: "nav3 #{set_target('vehicles')}" %>
+          <%= link_to 'Charge Stations', charge_stations_path, class: "nav5 #{set_target('charge_stations')}" %>
+          <%= link_to 'Bookings', bookings_path, class: "nav3 #{set_target('bookings')}" %>
+          <%= link_to 'Favourites', favourites_path, class: "nav4 #{set_target('favourites')}" %>
+          <%= link_to 'Charge Sessions', charge_sessions_path, class: "nav5 #{set_target('charge_sessions')}" %>
         </nav>
         <div class="head">
           <div class="text"><%= set_heading %></div>

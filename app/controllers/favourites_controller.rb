@@ -3,8 +3,8 @@ class FavouritesController < ApplicationController
   # GET /favourites
   def index
     vehicles = Vehicle.where(user: current_user)
+    @favourites = Favourite.where(vehicle_id: vehicles)
     bookings = Booking.where(vehicle_id: vehicles)
-    @favourites = Favourite.where(booking_id: bookings)
     @bookings = bookings.order({start_time: :desc}, :charge_station_id, :name).limit(10)
   end
   
@@ -30,6 +30,6 @@ class FavouritesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def favourite_params
-      params.permit(:booking_id)
+      params.permit(:charge_station_id, :vehicle_id)
     end
 end

@@ -1,0 +1,32 @@
+<h5>Charge session has been completed, please make payment.</h5>
+<br>
+<%= form_with(url: payments_path, local: true) do |form| %>
+
+  <%= form.hidden_field :booking_id, value: @booking.id %>
+  <%= form.hidden_field :amount, value: @amount %>
+  <%= form.hidden_field :name, value: @name %>
+
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <div class="s-table">
+      <div class="across">
+        <div class="s-label">Amount Paying</div>
+        <div class="data"><%= @amount %></div>
+      </div>
+    </div>
+  </article>
+  <br>
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="<%= @name %>"
+          data-email="<%= current_user.email %>"
+          data-amount="<%= @amount %>"
+          data-currency="aud"
+          data-locale="auto">
+  </script>
+
+<% end %>

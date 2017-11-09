@@ -26,6 +26,8 @@ class ChargeStation < ApplicationRecord
   belongs_to :user
   has_many :adapter_plugs, dependent: :destroy
   has_many :conversations, dependent: :destroy
+  has_many :bookings, dependent: :destroy
+  has_many :favourites, dependent: :destroy
   
   monetize :price_kwh_cents
 

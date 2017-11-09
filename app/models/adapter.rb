@@ -10,5 +10,5 @@
 
 class Adapter < ApplicationRecord
   has_many :adapter_plugs
-  has_one :charge_station
+  has_many :charge_station
 end

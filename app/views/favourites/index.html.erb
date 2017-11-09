@@ -5,14 +5,18 @@
   <% @favourites.each do |favourite| %>
     <div class="row">
       <div class="pair">
-        <div class="label">Booking - Favourite</div>
-        <div class="data"><%= favourite.booking.charge_station.full_address %></div>
+        <div class="label">Charge Station - Favourite</div>
+        <div class="data"><%= favourite.charge_station.full_address %></div>
+      </div>
+      <div class="pair">
+        <div class="label">Vehicle - Favourite</div>
+        <div class="data"><%= favourite.vehicle.licence_plate %></div>
       </div>
       <div class="pair">
         <div class="no-label"></div>
         <div class="buttons">
-          <%= link_to 'Book', new_booking_path(charge_station_id: favourite.booking.charge_station_id, vehicle_id:
-                                                                  favourite.booking.vehicle_id), class: ' item btn btn-warning' %>
+          <%= link_to 'Book', new_booking_path(charge_station_id: favourite.charge_station_id, vehicle_id:
+                                                                  favourite.vehicle_id), class: ' item btn btn-warning' %>
           <%= link_to 'Delete', favourite, method: :delete, data: { confirm: 'Are you sure?' }, class: ' item btn btn-danger' %>
         </div>
       </div>
@@ -23,8 +27,12 @@
   <% @bookings.each do |booking| %>
     <div class="row">
       <div class="pair">
-        <div class="label">Booking - Most Recent</div>
+        <div class="label">Charge Station - Most Recent</div>
         <div class="data"><%= booking.charge_station.full_address %></div>
+      </div>
+      <div class="pair">
+        <div class="label">Vehicle - Most Recent</div>
+        <div class="data"><%= booking.vehicle.licence_plate %></div>
       </div>
       <div class="pair">
         <div class="no-label"></div>

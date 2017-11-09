@@ -493,6 +493,13 @@ body {
   }
 }
 
+.charge_sessions {
+  margin: 0 auto;
+  .flex-table {
+    max-width: 60em;
+  }
+}
+
 @media (min-width: 300px) {
   .adapters, .adapter_plugs {
     // my flex-box table
@@ -566,16 +573,16 @@ body {
       width: 4.5em;
     }
     .nav2 {
-      width: 6em;
+      width: 5em;
     }
     .nav3 {
-      width: 7em;
+      width: 5.5em;
     }
     .nav4 {
-      width: 7.5em;
+      width: 6.5em;
     }
     .nav5 {
-      width: 10em;
+      width: 9em;
     }
     .head {
       display: none;

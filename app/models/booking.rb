@@ -15,9 +15,10 @@
 class Booking < ApplicationRecord
   belongs_to :vehicle
   belongs_to :charge_station
-  has_many :favourites, dependent: :destroy
+  has_many :charge_sessions, dependent: :destroy
+  has_many :payments, dependent: :destroy
   
-  validate :check_time_slot
+  before_save :check_time_slot, if: :name_changed?
 
   monetize :price_cents
   

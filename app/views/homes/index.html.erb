@@ -2,10 +2,10 @@
   <div class="down">
     <div class="search">
       <%= form_tag(root_path, method: :get) do %>
-        <%= text_field_tag :search, params[:search] %>
-        <%= submit_tag 'Search', name: nil, class: 'btn btn-warning' %>
+        <%= text_field_tag :search, params[:search], placeholder: 'Enter location address' %>
+        <%= submit_tag 'Position', name: nil, class: 'btn btn-warning' %>
       <% end %>
-      </div>
+    </div>
     <div id="map" class="item"></div>
     <script type="text/javascript">
       var map = new google.maps.Map(document.getElementById('map'), {

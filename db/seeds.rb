@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+Adapter.create! to_plug: 'J1772'
+Adapter.create! to_plug: 'CCS'
+Adapter.create! to_plug: 'CHAdeMO'
+Adapter.create! to_plug: 'Tesla'
+
+Action.create! description: 'Start Charge'
+Action.create! description: 'End Charge'

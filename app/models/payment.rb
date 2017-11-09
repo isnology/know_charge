@@ -1,15 +1,15 @@
 # == Schema Information
 #
-# Table name: favourites
+# Table name: payments
 #
 #  id                :integer          not null, primary key
-#  charge_station_id :integer
-#  vehicle_id        :integer
+#  price_cents       :integer
+#  charge_identifier :string
+#  booking_id        :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
 
-class Favourite < ApplicationRecord
-  belongs_to :charge_station
-  belongs_to :vehicle
+class Payment < ApplicationRecord
+  belongs_to :booking
 end

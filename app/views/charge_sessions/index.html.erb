@@ -1,0 +1,24 @@
+<h5><%= @heading %></h5>
+
+<div class="flex-table">
+  <% @charging_sessions.each do |session| %>
+    <div class="row">
+      <div class="pair">
+        <div class="label">Vehicle</div>
+        <div class="data"><%= link_to session.vehicle.licence_plate, charge_session_path(id: session.id),
+                                      class: 'btn btn-success' %></div>
+      </div>
+      <div class="pair">
+        <div class="label">Charge Station</div>
+        <div class="data"><%= session.charge_station.full_address %></div>
+      </div>
+      <div class="pair">
+        <div class="label">Time Slot</div>
+        <div class="data"><%= session.name %></div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+

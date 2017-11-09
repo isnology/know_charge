@@ -22,6 +22,8 @@ module ApplicationHelper
         'My Bookings'
       when 'favourites'
         'My Favourites'
+      when 'charge_sessions'
+        'My Charge Sessions'
       when 'adapter_plugs'
         'Adapter Plugs'
       when 'adapters'

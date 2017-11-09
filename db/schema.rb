@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108041103) do
+ActiveRecord::Schema.define(version: 20171108221205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "actions", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "adapter_plugs", force: :cascade do |t|
     t.bigint "adapter_id"
@@ -40,6 +46,16 @@ ActiveRecord::Schema.define(version: 20171108041103) do
     t.datetime "updated_at", null: false
     t.index ["charge_station_id"], name: "index_bookings_on_charge_station_id"
     t.index ["vehicle_id"], name: "index_bookings_on_vehicle_id"
+  end
+
+  create_table "charge_sessions", force: :cascade do |t|
+    t.bigint "action_id"
+    t.time "time"
+    t.bigint "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["action_id"], name: "index_charge_sessions_on_action_id"
+    t.index ["booking_id"], name: "index_charge_sessions_on_booking_id"
   end
 
   create_table "charge_stations", force: :cascade do |t|
@@ -73,10 +89,12 @@ ActiveRecord::Schema.define(version: 20171108041103) do
   end
 
   create_table "favourites", force: :cascade do |t|
-    t.bigint "booking_id"
+    t.bigint "charge_station_id"
+    t.bigint "vehicle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["booking_id"], name: "index_favourites_on_booking_id"
+    t.index ["charge_station_id"], name: "index_favourites_on_charge_station_id"
+    t.index ["vehicle_id"], name: "index_favourites_on_vehicle_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -88,6 +106,15 @@ ActiveRecord::Schema.define(version: 20171108041103) do
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "price_cents"
+    t.string "charge_identifier"
+    t.bigint "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_payments_on_booking_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -142,13 +169,17 @@ ActiveRecord::Schema.define(version: 20171108041103) do
   add_foreign_key "adapter_plugs", "charge_stations"
   add_foreign_key "bookings", "charge_stations"
   add_foreign_key "bookings", "vehicles"
+  add_foreign_key "charge_sessions", "actions"
+  add_foreign_key "charge_sessions", "bookings"
   add_foreign_key "charge_stations", "adapters"
   add_foreign_key "charge_stations", "users"
   add_foreign_key "conversations", "charge_stations"
   add_foreign_key "conversations", "users"
-  add_foreign_key "favourites", "bookings"
+  add_foreign_key "favourites", "charge_stations"
+  add_foreign_key "favourites", "vehicles"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
+  add_foreign_key "payments", "bookings"
   add_foreign_key "profiles", "users"
   add_foreign_key "vehicles", "users"
 end

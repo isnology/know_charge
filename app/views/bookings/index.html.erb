@@ -27,8 +27,8 @@
       <div class="pair">
         <div class="no-label"></div>
         <div class="buttons">
-          <%= button_to 'Add Fav.', favourites_path(booking_id: booking.id, method: :post), class: 'item btn
-          btn-warning' %>
+          <%= button_to 'Add Fav.', favourites_path(charge_station_id: booking.charge_station_id,
+              vehicle_id: booking.vehicle_id, method: :post), class: 'item btn btn-warning' %>
           <%= link_to 'Edit', edit_booking_path(booking), class: 'item btn btn-warning' %>
           <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: 'item btn
           btn-danger' %>
