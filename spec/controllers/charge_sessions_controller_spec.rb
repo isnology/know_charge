@@ -23,9 +23,9 @@ RSpec.describe ChargeSessionsController, type: :controller do
     end
   end
 
-  describe "GET #create" do
+  describe "GET #success" do
     it "returns http success" do
-      get :create
+      get :success
       expect(response).to have_http_status(:success)
     end
   end

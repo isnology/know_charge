@@ -19,7 +19,7 @@ RSpec.describe BookingsController, type: :routing do
       expect(:get => "/bookings/1/edit").to route_to("bookings#edit", :id => "1")
     end
 
-    it "routes to #create" do
+    it "routes to #success" do
       expect(:post => "/bookings").to route_to("bookings#create")
     end
 

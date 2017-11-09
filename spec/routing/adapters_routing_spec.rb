@@ -19,7 +19,7 @@ RSpec.describe AdaptersController, type: :routing do
       expect(:get => "/adapters/1/edit").to route_to("adapters#edit", :id => "1")
     end
 
-    it "routes to #create" do
+    it "routes to #success" do
       expect(:post => "/adapters").to route_to("adapters#create")
     end
 

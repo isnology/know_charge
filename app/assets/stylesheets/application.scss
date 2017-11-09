@@ -20,7 +20,7 @@ thead {
 
 .main {
   position: relative;
-  top: 85px;
+  top: 87px;
   width: 98%;
   margin: 0 auto;
   text-align: center;
@@ -139,6 +139,13 @@ input[type="text"] {
   padding: 3px;
   min-width: 8em;
   text-align: left;
+}
+.pics {
+  flex: 1;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+  padding: 3px;
+  text-align: center;
 }
 // end flex-box table
 
@@ -269,7 +276,7 @@ body {
     height: auto;
     text-align: left;
     text-decoration: none;
-    font-size: 29px;
+    font-size: 25px;
     color: black;
     padding-top: 5px;
     margin-left: 10%;
@@ -362,6 +369,10 @@ body {
   .s-table {
     margin: 0 auto;
     min-width: 21em;
+  }
+  .chat.across {
+    margin: 0 auto;
+    max-width: 15em;
   }
 }
 
@@ -497,6 +508,13 @@ body {
   margin: 0 auto;
   .flex-table {
     max-width: 60em;
+  }
+}
+
+.support {
+  margin: 0 auto;
+  .s-table {
+    max-width: 20em;
   }
 }
 

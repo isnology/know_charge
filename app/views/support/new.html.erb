@@ -1,0 +1,28 @@
+<h5>Support</h5>
+
+<p>Please message our support team here:</p>
+
+<%= form_with(url: support_url, local: true ) do |f| %>
+  <% unless @error_messages.empty? %>
+    <% @error_messages.each do |message| %>
+      <p><%= message %> </p>
+    <% end %>
+  <% end %>
+  <div class="s-table">
+    <div class="across">
+      <div class="s-label">Email</div>
+      <div class="data f2"><%= f.email_field :email %></div>
+    </div>
+    <div class="across">
+      <div class="s-label">Message</div>
+      <div class="data f2"><%= f.text_area :message, rows: 6 %></div>
+    </div>
+    <div class="across">
+      <div class="buttons">
+          <%= f.button 'Send', class: ' item btn btn-warning'%>
+      </div>
+    </div>
+  </div>
+
+<% end %>
+<%= link_to 'Back', root_path, class: 'btn btn-success' %>

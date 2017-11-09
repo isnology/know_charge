@@ -1,6 +1,6 @@
 class ChargeSessionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_booking, only: [:show, :edit, :create]
+  before_action :set_booking, only: [:show, :edit, :success]
   
   def index
     vehicles = Vehicle.where(user: current_user)

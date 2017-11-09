@@ -19,7 +19,7 @@ RSpec.describe ChargeStationsController, type: :routing do
       expect(:get => "/charge_stations/1/edit").to route_to("charge_stations#edit", :id => "1")
     end
 
-    it "routes to #create" do
+    it "routes to #success" do
       expect(:post => "/charge_stations").to route_to("charge_stations#create")
     end
 

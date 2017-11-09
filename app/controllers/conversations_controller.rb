@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :set_conversation, only: [:edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:index, :create]
+  before_action :authenticate_user!, only: [:index, :success]
 
   # GET /conversations
   # GET /conversations.json

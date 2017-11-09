@@ -19,7 +19,7 @@ RSpec.describe FavouritesController, type: :routing do
       expect(:get => "/favourites/1/edit").to route_to("favourites#edit", :id => "1")
     end
 
-    it "routes to #create" do
+    it "routes to #success" do
       expect(:post => "/favourites").to route_to("favourites#create")
     end
 

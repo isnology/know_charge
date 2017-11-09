@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'profiles' => 'profiles#show', as: 'profiles'
   patch 'profiles' => 'profiles#update', as: ''
   put 'profiles' => 'profiles#update', as: 'profile'
-  post 'profiles' => 'profiles#create', as: 'new_profile_create'
+  post 'profiles' => 'profiles#success', as: 'new_profile_create'
   
   resources :vehicles
   resources :adapters, only: [:index, :new, :create, :edit, :update, :destroy]
@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   resources :favourites, only: [:index, :create, :destroy]
   resources :charge_sessions, only: [:index, :show, :create]
   resources :payments
+  get '/support' => 'support#new'
+  post '/support' => 'support#success'
   
   mount ActionCable.server => '/cable'
   

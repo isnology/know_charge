@@ -25,7 +25,7 @@ require 'rails_helper'
 
 RSpec.describe VehiclesController, type: :controller do
 
-  # This should return the minimal set of attributes required to create a valid
+  # This should return the minimal set of attributes required to success a valid
   # Vehicle. As you add validations to Vehicle, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
@@ -72,23 +72,23 @@ RSpec.describe VehiclesController, type: :controller do
     end
   end
 
-  describe "POST #create" do
+  describe "POST #success" do
     context "with valid params" do
       it "creates a new Vehicle" do
         expect {
-          post :create, params: {vehicle: valid_attributes}, session: valid_session
+          post :success, params: {vehicle: valid_attributes}, session: valid_session
         }.to change(Vehicle, :count).by(1)
       end
 
       it "redirects to the created vehicle" do
-        post :create, params: {vehicle: valid_attributes}, session: valid_session
+        post :success, params: {vehicle: valid_attributes}, session: valid_session
         expect(response).to redirect_to(Vehicle.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {vehicle: invalid_attributes}, session: valid_session
+        post :success, params: {vehicle: invalid_attributes}, session: valid_session
         expect(response).to be_success
       end
     end

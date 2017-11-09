@@ -2,7 +2,7 @@
 <div class="flex-table">
   <% @vehicles.each do |vehicle| %>
     <div class="row">
-      <figure class="data">
+      <figure class="pics">
           <% if vehicle.image.present? %>
             <%= image_tag vehicle.image_url(:original), size: '150x100', alt: "vehicle photo" %>
           <% else %>

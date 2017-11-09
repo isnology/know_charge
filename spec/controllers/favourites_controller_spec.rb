@@ -25,7 +25,7 @@ require 'rails_helper'
 
 RSpec.describe FavouritesController, type: :controller do
 
-  # This should return the minimal set of attributes required to create a valid
+  # This should return the minimal set of attributes required to success a valid
   # Favourite. As you add validations to Favourite, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
@@ -72,23 +72,23 @@ RSpec.describe FavouritesController, type: :controller do
     end
   end
 
-  describe "POST #create" do
+  describe "POST #success" do
     context "with valid params" do
       it "creates a new Favourite" do
         expect {
-          post :create, params: {favourite: valid_attributes}, session: valid_session
+          post :success, params: {favourite: valid_attributes}, session: valid_session
         }.to change(Favourite, :count).by(1)
       end
 
       it "redirects to the created favourite" do
-        post :create, params: {favourite: valid_attributes}, session: valid_session
+        post :success, params: {favourite: valid_attributes}, session: valid_session
         expect(response).to redirect_to(Favourite.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {favourite: invalid_attributes}, session: valid_session
+        post :success, params: {favourite: invalid_attributes}, session: valid_session
         expect(response).to be_success
       end
     end

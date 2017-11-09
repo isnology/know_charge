@@ -19,7 +19,7 @@ RSpec.describe ProfilesController, type: :routing do
       expect(:get => "/profiles/1/edit").to route_to("profiles#edit", :id => "1")
     end
 
-    it "routes to #create" do
+    it "routes to #success" do
       expect(:post => "/profiles").to route_to("profiles#create")
     end
 

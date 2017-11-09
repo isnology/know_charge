@@ -19,7 +19,7 @@ RSpec.describe ConversationsController, type: :routing do
       expect(:get => "/conversations/1/edit").to route_to("conversations#edit", :id => "1")
     end
 
-    it "routes to #create" do
+    it "routes to #success" do
       expect(:post => "/conversations").to route_to("conversations#create")
     end
 

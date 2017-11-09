@@ -47,8 +47,12 @@
         <% end %>
       <% end %>
 
-      <%= button_to 'Chat', conversations_path(charge_station_id: @charge_station, method: :post), class: 'btn
-      btn-warning' %>
+
+      <div class="chat across">
+        <%= button_to 'Chat', conversations_path(charge_station_id: @charge_station, method: :post), class: 'item
+        btn btn-warning' %>
+        <%= link_to 'Email Support', support_path, class: 'item btn btn-info' %>
+      </div>
 
       <div class="flex-table">
         <% @vehicles.each do |vehicle| %>
