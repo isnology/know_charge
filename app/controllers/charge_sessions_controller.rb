@@ -1,6 +1,6 @@
 class ChargeSessionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_booking, only: [:show, :edit, :success]
+  before_action :set_booking, only: [:show, :edit, :create]
   
   def index
     vehicles = Vehicle.where(user: current_user)
@@ -35,9 +35,10 @@ class ChargeSessionsController < ApplicationController
     begin_time, end_time = set_times
     if begin_time.nil?
       @charge_session = ChargeSession.new(action_id: 1, time: Time.now, booking: @booking)
-      if @charge_session.save
-        redirect_to charge_session_path(id: @booking.id), notice: 'Charge session was successfully started.' && return
+      unless @charge_session.save
+        render charge_session_path(id: @booking.id), notice: 'Unable to add Session started record.' && return
       end
+      redirect_to charge_session_path(id: @booking.id), notice: 'Charge session was successfully started.' && return
     else
       if begin_time.present? && end_time.nil?
         @charge_session = ChargeSession.new(action_id: 2, time: Time.now, booking: @booking)
@@ -51,7 +52,7 @@ class ChargeSessionsController < ApplicationController
           kwh = c_kwh < v_kwh ? c_kwh : v_kwh
           payment = (@booking.charge_station.price_kwh_cents * hours * kwh).to_i
           unless @booking.update_attributes!(price_cents: payment)
-            flash[:error] = 'Unable to update Booking record with completed price.'
+            render charge_session_path(id: @booking.id),notice: 'Unable to update Booking record with completed price.'
           end
           redirect_to charge_session_path(id: @booking.id),notice: 'Charge session was successfully completed.'
         end
