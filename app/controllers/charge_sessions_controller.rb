@@ -35,10 +35,12 @@ class ChargeSessionsController < ApplicationController
     begin_time, end_time = set_times
     if begin_time.nil?
       @charge_session = ChargeSession.new(action_id: 1, time: Time.now, booking: @booking)
-      unless @charge_session.save
-        render charge_session_path(id: @booking.id), notice: 'Unable to add Session started record.' && return
+      if @charge_session.save
+        redirect_to charge_session_path(id: @booking.id), notice: 'Charge session was successfully started.'
+      else
+        render charge_session_path(id: @booking.id), notice: 'Unable to add Session started record.'
       end
-      redirect_to charge_session_path(id: @booking.id), notice: 'Charge session was successfully started.' && return
+      
     else
       if begin_time.present? && end_time.nil?
         @charge_session = ChargeSession.new(action_id: 2, time: Time.now, booking: @booking)
@@ -51,10 +53,11 @@ class ChargeSessionsController < ApplicationController
           c_kwh = @booking.charge_station.charge_kwh
           kwh = c_kwh < v_kwh ? c_kwh : v_kwh
           payment = (@booking.charge_station.price_kwh_cents * hours * kwh).to_i
-          unless @booking.update_attributes!(price_cents: payment)
+          if @booking.update_attributes!(price_cents: payment)
+            redirect_to charge_session_path(id: @booking.id),notice: 'Charge session was successfully completed.'
+          else
             render charge_session_path(id: @booking.id),notice: 'Unable to update Booking record with completed price.'
           end
-          redirect_to charge_session_path(id: @booking.id),notice: 'Charge session was successfully completed.'
         end
       end
     end
