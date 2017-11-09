@@ -16,7 +16,7 @@ class HomesController < ApplicationController
         end
       end
     end
-    #<script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+    
     @locations = []
     @stations = ChargeStation.all
     @stations.each do |station|
