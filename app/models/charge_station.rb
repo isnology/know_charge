@@ -40,7 +40,7 @@ class ChargeStation < ApplicationRecord
   end
   
   def full_address
-    address << ', Australia'
+    address + ', Australia'
   end
   
   def small_address

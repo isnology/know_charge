@@ -1,15 +1,14 @@
 <%= form_with(model: charge_station, local: true) do |form| %>
-  <% if charge_station.errors.any? %></div>
+  <% if charge_station.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(charge_station.errors.count, "error") %></div> prohibited this charge_station from being saved:</h2>
-
+      <h2><%= pluralize(charge_station.errors.count, "error") %> prohibited this charge_station from being saved:</h2>
       <ul>
-      <% charge_station.errors.full_messages.each do |message| %></div>
+      <% charge_station.errors.full_messages.each do |message| %>
         <li><%= message %></div></li>
-      <% end %></div>
+      <% end %>
       </ul>
     </div>
-  <% end %></div>
+  <% end %>
 
   <div class="s-table">
     <div class="across">
