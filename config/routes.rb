@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :messages, only: [:index, :create]
   resources :favourites, only: [:index, :create, :destroy]
   resources :charge_sessions, only: [:index, :show, :create]
-  resources :payments
+  resources :payments, only: [:new, :create]
   get '/support' => 'support#new'
   post '/support' => 'support#success'
   
