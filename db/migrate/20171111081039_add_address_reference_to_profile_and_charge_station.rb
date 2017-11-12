@@ -74,5 +74,7 @@ class AddAddressReferenceToProfileAndChargeStation < ActiveRecord::Migration[5.1
     
     remove_reference :charge_stations, :adddress, index: true, foreign_key: true
     remove_reference :profiles, :adddress, index: true, foreign_key: true
+    remove_column :addresses, :latitude, :float
+    remove_column :addresses, :longitude, :float
   end
 end

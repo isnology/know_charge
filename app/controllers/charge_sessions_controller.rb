@@ -33,7 +33,7 @@ class ChargeSessionsController < ApplicationController
   def create
     @charge_session_name = "#{@booking.charge_station.small_address} - #{@booking.vehicle.licence_plate}"
     begin_time, end_time = set_times
-    if begin_time.nil?
+    if begin_time.nil? && params[:action] == 1
       @charge_session = ChargeSession.new(action_id: 1, time: Time.now, booking: @booking)
       if @charge_session.save
         redirect_to charge_session_path(id: @booking.id), notice: 'Charge session was successfully started.'
@@ -42,7 +42,7 @@ class ChargeSessionsController < ApplicationController
       end
       
     else
-      if begin_time.present? && end_time.nil?
+      if begin_time.present? && end_time.nil? && params[:action] == 2
         @charge_session = ChargeSession.new(action_id: 2, time: Time.now, booking: @booking)
         if @charge_session.save
           begin_time, end_time = set_times
@@ -71,7 +71,7 @@ class ChargeSessionsController < ApplicationController
   
     # Never trust parameters from the scary internet, only allow the white list through.
     def session_params
-      params.permit(:id, :booking_id, :price_cents)
+      params.permit(:id, :booking_id, :price_cents, :action)
     end
   
     def set_times
