@@ -18,7 +18,10 @@ class Booking < ApplicationRecord
   has_many :charge_sessions, dependent: :destroy
   has_many :payments, dependent: :destroy
   
-  before_save :check_time_slot, if: :name_changed?
+  before_create :check_time_slot
+  before_update :check_time_slot, if: :name_changed?
+  validates :name, presence: true
+  validates :start_time, presence: true
 
   monetize :price_cents
   

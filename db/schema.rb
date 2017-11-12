@@ -3,14 +3,14 @@
 # incrementally modify your database, and then regenerate this schema definition.
 #
 # Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to success the application database on another
+# database schema. If you need to create the application database on another
 # system, you should be using db:schema:load, not running all the migrations
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108221205) do
+ActiveRecord::Schema.define(version: 20171112073732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,19 @@ ActiveRecord::Schema.define(version: 20171108221205) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "addresses", force: :cascade do |t|
+    t.string "number"
+    t.string "street"
+    t.string "city"
+    t.string "state"
+    t.string "postcode"
+    t.string "country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
+  end
+
   create_table "bookings", force: :cascade do |t|
     t.date "start_time"
     t.string "name"
@@ -59,11 +72,6 @@ ActiveRecord::Schema.define(version: 20171108221205) do
   end
 
   create_table "charge_stations", force: :cascade do |t|
-    t.string "street_number"
-    t.string "street"
-    t.string "city"
-    t.string "postcode"
-    t.string "state"
     t.float "charge_kwh"
     t.bigint "adapter_id"
     t.time "open_time"
@@ -73,9 +81,9 @@ ActiveRecord::Schema.define(version: 20171108221205) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "latitude"
-    t.float "longitude"
+    t.bigint "address_id"
     t.index ["adapter_id"], name: "index_charge_stations_on_adapter_id"
+    t.index ["address_id"], name: "index_charge_stations_on_address_id"
     t.index ["user_id"], name: "index_charge_stations_on_user_id"
   end
 
@@ -120,17 +128,12 @@ ActiveRecord::Schema.define(version: 20171108221205) do
   create_table "profiles", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.string "street_number"
-    t.string "street"
-    t.string "city"
-    t.string "state"
     t.text "image_data"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "postcode"
-    t.float "latitude"
-    t.float "longitude"
+    t.bigint "address_id"
+    t.index ["address_id"], name: "index_profiles_on_address_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
@@ -172,6 +175,7 @@ ActiveRecord::Schema.define(version: 20171108221205) do
   add_foreign_key "charge_sessions", "actions"
   add_foreign_key "charge_sessions", "bookings"
   add_foreign_key "charge_stations", "adapters"
+  add_foreign_key "charge_stations", "addresses"
   add_foreign_key "charge_stations", "users"
   add_foreign_key "conversations", "charge_stations"
   add_foreign_key "conversations", "users"
@@ -180,6 +184,7 @@ ActiveRecord::Schema.define(version: 20171108221205) do
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
   add_foreign_key "payments", "bookings"
+  add_foreign_key "profiles", "addresses"
   add_foreign_key "profiles", "users"
   add_foreign_key "vehicles", "users"
 end

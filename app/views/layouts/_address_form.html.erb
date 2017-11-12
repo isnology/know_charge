@@ -1,0 +1,33 @@
+<%= form.fields_for(:address) do |a| %>
+
+  <div class="across">
+    <div class="s-label">Street number</div>
+    <div class="data f2"><%= a.text_field :number, id: :address_number %></div>
+  </div>
+
+  <div class="across">
+    <div class="s-label">Street</div>
+    <div class="data f2"><%= a.text_field :street, id: :address_street %></div>
+  </div>
+
+  <div class="across">
+    <div class="s-label">City</div>
+    <div class="data f2"><%= a.text_field :city, id: :address_city %></div>
+  </div>
+
+  <div class="across">
+    <div class="s-label">State</div>
+    <div class="data f2"><%= a.text_field :state, id: :address_state %></div>
+  </div>
+
+  <div class="across">
+    <div class="s-label">Postcode</div>
+    <div class="data f2"><%= a.text_field :postcode, id: :address_postcode %></div>
+  </div>
+
+  <div class="across">
+    <div class="s-label">Country</div>
+    <div class="data f2"><%= a.text_field :country, id: :address_country %></div>
+  </div>
+
+<% end %>

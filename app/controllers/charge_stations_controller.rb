@@ -11,6 +11,7 @@ class ChargeStationsController < ApplicationController
   # GET /charge_stations/1
   # GET /charge_stations/1.json
   def show
+    @address = @charge_station.address
     @adapter_plugs = AdapterPlug.where(charge_station: @charge_station)
     @plugs = []
     @adapter_plugs.each { |plug| @plugs << Adapter.find(plug.adapter_id) }
@@ -21,10 +22,12 @@ class ChargeStationsController < ApplicationController
   # GET /charge_stations/new
   def new
     @charge_station = ChargeStation.new
+    @charge_station.build_address
   end
 
   # GET /charge_stations/1/edit
   def edit
+    @charge_station.build_address if @charge_station.address.nil?
   end
 
   # POST /charge_stations
@@ -39,7 +42,7 @@ class ChargeStationsController < ApplicationController
         format.json { render :show, status: :created, location: @charge_station }
       else
         format.html { render :new }
-        format.json { render json: @charge_station.errors, status: :unprocessable_entity }
+        format.json { render json: @charge_station.errors + @address.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -53,7 +56,7 @@ class ChargeStationsController < ApplicationController
         format.json { render :show, status: :ok, location: @charge_station }
       else
         format.html { render :edit }
-        format.json { render json: @charge_station.errors, status: :unprocessable_entity }
+        format.json { render json: @charge_station.errors + @address.errors , status: :unprocessable_entity }
       end
     end
   end
@@ -76,6 +79,8 @@ class ChargeStationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def charge_station_params
-      params.require(:charge_station).permit(:street_number, :street, :city, :postcode, :state, :charge_kwh, :adapter_id, :open_time, :close_time, :days_of_week, :price_kwh_cents, :user_id)
+      params.require(:charge_station).permit(:charge_kwh, :adapter_id, :open_time, :close_time, :days_of_week,
+               :price_kwh_cents, :user_id, address_attributes: [:id, :number, :street, :city, :state, :postcode,
+          :country])
     end
 end

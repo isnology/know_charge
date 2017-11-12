@@ -1,4 +1,4 @@
-<div class="homes flex-main">
+<div class="flex-main">
   <div class="down">
     <div class="search">
       <%= form_tag(root_path, method: :get) do %>
@@ -8,34 +8,38 @@
     </div>
     <div id="map" class="item"></div>
     <script type="text/javascript">
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
-        center: new google.maps.LatLng(<%= @lat_center %>, <%= @long_center %>),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      });
-
-      var locations = <%= raw @locations.to_json %>;
-      var marker, i;
-
-      for (i = 0; i < locations.length; i++) {
-        marker = new google.maps.Marker({
-          position: new google.maps.LatLng(locations[i][0], locations[i][1]),
-          map: map
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: new google.maps.LatLng(<%= @lat_center %>, <%= @long_center %>),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-          return function() {
-            const url = locations[i][2];
-            window.location.href = url
-          }
-        })(marker, i));
+        var locations = <%= raw @locations.to_json %>;
+        var marker, i;
+
+        for (i = 0; i < locations.length; i++) {
+          marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][0], locations[i][1]),
+            map: map
+          });
+
+          google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+              const url = locations[i][2];
+              window.location.href = url
+            }
+          })(marker, i));
+        }
       }
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV.fetch('MAPS_KEYJS') %>&callback=initMap"
+            async defer></script>
   </div>
 
   <div id="station" class="item">
     <% if @charge_station.present? %>
-      <h5><%= @charge_station.address %></h5>
+      <h5><%= @charge_station.address.address %></h5>
       <div class="s-table">
         <%= render 'layouts/charge_station_details', charge_station: @charge_station, plugs: @plugs %>
       </div>
@@ -85,10 +89,6 @@
           </div>
         <% end %>
       </div>
-
-
-  <% end %>
+    <% end %>
   </div>
-
-
 </div>

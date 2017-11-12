@@ -10,10 +10,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV.fetch('MAPS_KEYJS') %>&callback=initMap"
-            type="text/javascript"></script>
   </head>
-
   <body class="<%= controller_name %> <%= action_name %>" <%= yield :extra_body_attributes %> >
     <nav>
       <input id="nav-check" type="checkbox">

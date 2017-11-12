@@ -3,7 +3,7 @@ class HomesController < ApplicationController
   before_action :check_profile
   
   def index
-    @me = current_user.profile
+    @me = current_user.profile.address
     @lat_center = @me.latitude
     @long_center = @me.longitude
     
@@ -21,7 +21,8 @@ class HomesController < ApplicationController
     @stations = ChargeStation.all
     @stations.each do |station|
       url = "#{root_url}?charge_station=#{station.id}#station"
-      @locations << [station.latitude, station.longitude, url]
+      addr = station.address
+      @locations << [addr.latitude, addr.longitude, url]
     end
     
     # @ip = 59.100.247.2

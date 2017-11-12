@@ -3,11 +3,6 @@
 # Table name: charge_stations
 #
 #  id              :integer          not null, primary key
-#  street_number   :string
-#  street          :string
-#  city            :string
-#  postcode        :string
-#  state           :string
 #  charge_kwh      :float
 #  adapter_id      :integer
 #  open_time       :time
@@ -19,6 +14,7 @@
 #  updated_at      :datetime         not null
 #  latitude        :float
 #  longitude       :float
+#  address_id      :integer
 #
 
 class ChargeStation < ApplicationRecord
@@ -28,22 +24,9 @@ class ChargeStation < ApplicationRecord
   has_many :conversations, dependent: :destroy
   has_many :bookings, dependent: :destroy
   has_many :favourites, dependent: :destroy
+  belongs_to :address
+  accepts_nested_attributes_for :address, allow_destroy: true
   
   monetize :price_kwh_cents
-
-  geocoded_by :full_address
-  after_validation :geocode, #if: ->(obj){ obj.full_address.present? and obj.full_address_changed? }
-
-
-  def address
-    "#{street_number} #{street}, #{city}, #{state}, #{postcode}"
-  end
   
-  def full_address
-    address + ', Australia'
-  end
-  
-  def small_address
-    "#{street_number} #{street} #{city}"
-  end
 end

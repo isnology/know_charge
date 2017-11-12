@@ -3,11 +3,6 @@
 # Table name: charge_stations
 #
 #  id              :integer          not null, primary key
-#  street_number   :string
-#  street          :string
-#  city            :string
-#  postcode        :string
-#  state           :string
 #  charge_kwh      :float
 #  adapter_id      :integer
 #  open_time       :time
@@ -19,6 +14,7 @@
 #  updated_at      :datetime         not null
 #  latitude        :float
 #  longitude       :float
+#  address_id      :integer
 #
 
 require 'rails_helper'

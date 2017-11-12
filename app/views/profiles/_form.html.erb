@@ -1,13 +1,14 @@
 
 <%= form_with(model: profile, local: true) do |form| %>
-  <% if profile.errors.any? %></div>
+  <% if profile.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+      <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being
+        saved:</h2>
 
       <ul>
-      <% profile.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %></div>
+        <% profile.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -28,30 +29,8 @@
       <div class="data f2"><%= form.text_field :last_name, id: :profile_last_name %></div>
     </div>
 
-    <div class="across">
-      <div class="s-label">Street number</div>
-      <div class="data f2"><%= form.text_field :street_number, id: :profile_street_number %></div>
-    </div>
+    <%= render 'layouts/address_form', form: form %>
 
-    <div class="across">
-      <div class="s-label">Street</div>
-      <div class="data f2"><%= form.text_field :street, id: :profile_street %></div>
-    </div>
-
-    <div class="across">
-      <div class="s-label">City</div>
-      <div class="data f2"><%= form.text_field :city, id: :profile_city %></div>
-    </div>
-
-    <div class="across">
-      <div class="s-label">Postcode</div>
-      <div class="data f2"><%= form.text_field :postcode, id: :profile_postcode %></div>
-    </div>
-
-    <div class="across">
-      <div class="s-label">State</div>
-      <div class="data f2"><%= form.text_field :state, id: :profile_state %></div>
-    </div>
   </div>
   <br/>
   <div class="actions">

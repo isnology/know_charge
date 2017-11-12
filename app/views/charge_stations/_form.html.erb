@@ -1,40 +1,18 @@
 <%= form_with(model: charge_station, local: true) do |form| %>
   <% if charge_station.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(charge_station.errors.count, "error") %> prohibited this charge_station from being saved:</h2>
+      <h2><%= pluralize(charge_station.errors.count, "error") %> prohibited this charge_station
+        from being saved:</h2>
       <ul>
-      <% charge_station.errors.full_messages.each do |message| %>
-        <li><%= message %></div></li>
-      <% end %>
+        <% charge_station.errors.full_messages.each do |message| %>
+          <li><%= message %></div></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="s-table">
-    <div class="across">
-      <div class="s-label f2">Street number</div>
-      <div class="data f3"><%= form.text_field :street_number, id: :charge_station_street_number %></div>
-    </div>
-
-    <div class="across">
-      <div class="s-label f2">Street</div>
-      <div class="data f3"><%= form.text_field :street, id: :charge_station_street %></div>
-    </div>
-
-    <div class="across">
-      <div class="s-label f2">City</div>
-      <div class="data f3"><%= form.text_field :city, id: :charge_station_city %></div>
-    </div>
-
-    <div class="across">
-      <div class="s-label f2">Postcode</div>
-      <div class="data f3"><%= form.text_field :postcode, id: :charge_station_postcode %></div>
-    </div>
-
-    <div class="across">
-      <div class="s-label f2">State</div>
-      <div class="data f3"><%= form.text_field :state, id: :charge_station_state %></div>
-    </div>
+    <%= render 'layouts/address_form', form: form %>
 
     <div class="across">
       <div class="s-label f2">Charge_kwh</div>

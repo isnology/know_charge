@@ -6,7 +6,7 @@
     <div class="row">
       <div class="pair">
         <div class="label">Charge Station - Favourite</div>
-        <div class="data"><%= favourite.charge_station.full_address %></div>
+        <div class="data"><%= favourite.charge_station.address.address %></div>
       </div>
       <div class="pair">
         <div class="label">Vehicle - Favourite</div>
@@ -28,7 +28,7 @@
     <div class="row">
       <div class="pair">
         <div class="label">Charge Station - Most Recent</div>
-        <div class="data"><%= booking.charge_station.full_address %></div>
+        <div class="data"><%= booking.charge_station.address.address %></div>
       </div>
       <div class="pair">
         <div class="label">Vehicle - Most Recent</div>
