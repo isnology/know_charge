@@ -2,6 +2,9 @@ class AddAddressReferenceToProfileAndChargeStation < ActiveRecord::Migration[5.1
   def up
     add_reference :profiles, :address, foreign_key: true
     add_reference :charge_stations, :address, foreign_key: true
+
+    add_column :addresses, :latitude, :float
+    add_column :addresses, :longitude, :float
     
     Profile.find_each do |rec|
       address = Address.create!(number: rec.street_number,
