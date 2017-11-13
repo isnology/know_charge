@@ -2,14 +2,14 @@
 <h5><%= @charge_session_name %></h5>
 
 <% if @action == 'start' %>
-  <%= button_to 'Start charging', charge_sessions_path(id: @booking.id, action: 1), class: 'btn btn-info' %>
+  <%= button_to 'Start charging', charge_sessions_path(id: @booking.id, step: 1), class: 'btn btn-info' %>
 <% else %>
   <br>
   <br>
 <% end %>
 
 <% if @action == 'end' %>
-  <%= button_to 'Finished charging', charge_sessions_path(id: @booking.id, action: 2), class: 'btn btn-warning' %>
+  <%= button_to 'Finished charging', charge_sessions_path(id: @booking.id, step: 2), class: 'btn btn-warning' %>
 <% else %>
   <br>
   <br>

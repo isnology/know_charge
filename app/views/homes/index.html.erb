@@ -33,8 +33,12 @@
         }
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV.fetch('MAPS_KEYJS') %>&callback=initMap"
+    <% if Rails.env.production? %>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV.fetch('MAPS_KEYJS') %>&callback=initMap"
             async defer></script>
+    <% else %>
+      <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+    <% end %>
   </div>
 
   <div id="station" class="item">
