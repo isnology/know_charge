@@ -9,7 +9,7 @@ class ChargeSessionsController < ApplicationController
   end
 
   def show
-    @charge_session_name = "#{@booking.charge_station.small_address} - #{@booking.vehicle.licence_plate}"
+    @charge_session_name = "#{@booking.charge_station.address.small_address} - #{@booking.vehicle.licence_plate}"
     start_time, end_time = set_times
     if start_time.nil?
       @action = 'start'
@@ -31,7 +31,7 @@ class ChargeSessionsController < ApplicationController
   end
 
   def create
-    @charge_session_name = "#{@booking.charge_station.small_address} - #{@booking.vehicle.licence_plate}"
+    @charge_session_name = "#{@booking.charge_station.address.small_address} - #{@booking.vehicle.licence_plate}"
     begin_time, end_time = set_times
     if begin_time.nil? && params[:action] == 1
       @charge_session = ChargeSession.new(action_id: 1, time: Time.now, booking: @booking)
