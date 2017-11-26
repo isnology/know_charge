@@ -1,6 +1,6 @@
 
   <h5>Edit Adapter Plug for:-</h5>
-  <h5><%= @charge_station.address %></h5>
+  <h5><%= @charge_station.address.full_address %></h5>
 
   <%= render 'form', charge_station: @charge_station, adapter_plug: @adapter_plug %>
 

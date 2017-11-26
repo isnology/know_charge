@@ -1,7 +1,5 @@
-<% provide(:extra_body_attributes, "data-room-name=#{@conversation.id} data-id-name=#{@code}" ) %>
-<h6 id="chat">Chat with <%= @code == 'a' ? @conversation.charge_station.small_address : @conversation.user.profile
-    .full_name
-%></h6>
+<% provide(:extra_body_attributes, "data-room-name=#{@conversation.id} data-id-name=#{@user_code}" ) %>
+<h6 id="chat">Chat with <%= other_user_name(@user_code) %></h6>
 <div class="message-wr">
   <%= render 'messages' %>
   <%= render 'message_form' %>

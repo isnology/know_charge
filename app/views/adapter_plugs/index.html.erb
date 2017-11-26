@@ -1,5 +1,5 @@
 
-<h5><%= @charge_station.address %></h5>
+<h5><%= @charge_station.address.full_address %></h5>
 
 <div class="flex-table">
   <% @adapter_plugs.each do |adapter_plug| %>

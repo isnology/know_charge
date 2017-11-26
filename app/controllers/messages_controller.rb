@@ -11,21 +11,22 @@ class MessagesController < ApplicationController
       rec.save
     end
     # params for justify_msg helper
-    @my_id = 'm-right'
-    @other_id = 'm-left'
-    # passed as a data attribute on the body tag
-    @code = Message.find_my_id(current_user, @conversation)
+    @current_user_code = 'm-right'  # css class name
+    @other_user_code   = 'm-left'   # css class name
+    # passed as a data attribute on the html body tag
+    @user_code = Message.user_code(current_user, @conversation)
   end
 
   def create
     @conversation = Conversation.find(message_params[:conversation_id])
     message = Message.new(message_params)
     message.user_id = current_user.id
-    # make the conversation user_id code = 'a', charge station user_id code = 'b'
-    # params for justify_msg helper (different on send - replaced in javascript prior to display)
-    @my_id = Message.find_my_id(current_user, @conversation)
-    @other_id = ''  # messages I send will always be my_id but need as a place holder for helper
-    if message.save
+    # make the conversation user_id (vehicle owner) code = 'a', charge station user_id code = 'b'
+    # params for justify_msg helper (replaced in javascript prior to display with css class names)
+    @current_user_code = Message.user_code(current_user, @conversation)
+    @other_user_code   = '' # messages I send will always be the current_user but need as a place holder for
+    # justify_msg() helper
+    if message.content.present? && message.save
       ActionCable.server.broadcast "room_channel_#{@conversation.id}",
                                    message: render_message(message)
     end

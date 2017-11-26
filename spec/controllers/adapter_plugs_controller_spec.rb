@@ -49,14 +49,6 @@ RSpec.describe AdapterPlugsController, type: :controller do
     end
   end
 
-  describe "GET #show" do
-    it "returns a success response" do
-      adapter_plug = AdapterPlug.create! valid_attributes
-      get :show, params: {id: adapter_plug.to_param}, session: valid_session
-      expect(response).to be_success
-    end
-  end
-
   describe "GET #new" do
     it "returns a success response" do
       get :new, params: {}, session: valid_session

@@ -4,7 +4,13 @@ module MessagesHelper
     Kramdown::Document.new(text, input: 'GFM').to_html
   end
 
-  def justify_msg(me, them, message)
-    message.user_id == current_user.id ? me : them
+  def justify_msg(current_user_code, other_user_code, message)
+    message.user_id == current_user.id ? current_user_code : other_user_code
+  end
+  
+  def other_user_name(user_code)
+    vehicle_owner = 'a'
+    user_code == vehicle_owner ? @conversation.charge_station.address.small_address : @conversation.user.profile
+                                                                                         .full_name
   end
 end

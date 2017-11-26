@@ -19,7 +19,8 @@ class Message < ApplicationRecord
   scope :un_read, -> (conversation, user) { where(conversation: conversation).where.not(user_id: user.id).
     where.not(read: true) }
   
-  def self.find_my_id(user, conversation)
+  def self.user_code(user, conversation)
+    # conversation user_id is always the vehicle owner ('a' is always the vehicle owner)
     user.id == conversation.user_id ? 'a' : 'b'
   end
 end

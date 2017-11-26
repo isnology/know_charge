@@ -15,18 +15,14 @@ RSpec.describe ChargeSessionsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
-
-  describe "GET #new" do
-    it "returns http success" do
-      get :new
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #success" do
-    it "returns http success" do
-      get :success
-      expect(response).to have_http_status(:success)
+  
+  describe "POST #success" do
+    context "with valid params" do
+      it "creates a new ChargeSession" do
+        expect {
+          post :success, params: {charge_session: valid_attributes}, session: valid_session
+        }.to change(ChargeSession, :count).by(1)
+      end
     end
   end
 

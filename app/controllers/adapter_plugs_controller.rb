@@ -9,7 +9,6 @@ class AdapterPlugsController < ApplicationController
     @adapter_plugs = AdapterPlug.where(charge_station: @charge_station)
   end
   
-
   # GET /adapter_plugs/new
   def new
     @adapter_plug = AdapterPlug.new
@@ -27,10 +26,8 @@ class AdapterPlugsController < ApplicationController
 
     respond_to do |format|
       if @adapter_plug.save
-        format.html { redirect_to charge_station_adapter_plugs_path(@charge_station), notice: 'Adapter plug was
-successfully
-created
-.' }
+        format.html { redirect_to charge_station_adapter_plugs_path(@charge_station),
+                                  notice: 'Adapter plug was successfully created.' }
         format.json { render :show, status: :created, location: @adapter_plug }
       else
         format.html { render :new }
@@ -44,8 +41,8 @@ created
   def update
     respond_to do |format|
       if @adapter_plug.update(adapter_plug_params)
-        format.html { redirect_to charge_station_adapter_plugs_path(@charge_station), notice: 'Adapter plug was
-successfully updated.' }
+        format.html { redirect_to charge_station_adapter_plugs_path(@charge_station),
+                                  notice: 'Adapter plug was successfully updated.' }
         format.json { render :show, status: :ok, location: @adapter_plug }
       else
         format.html { render :edit }

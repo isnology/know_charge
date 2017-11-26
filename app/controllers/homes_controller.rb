@@ -3,26 +3,30 @@ class HomesController < ApplicationController
   before_action :check_profile
   
   def index
-    @me = current_user.profile.address
-    @lat_center = @me.latitude
-    @long_center = @me.longitude
-    
+    # center the map based on a "search/position" address if one entered
     if @search = params[:search]
-      result = Geocoder.search(@search)
-      if result.present?
-        if result[0].data['geometry']['location'].present?
-          @lat_center = result[0].data['geometry']['location']['lat']
-          @long_center = result[0].data['geometry']['location']['lng']
+      geocode_result = Geocoder.search(@search)
+      if geocode_result.present?
+        if geocode_result[0].data['geometry']['location'].present?
+          @center_map_latitude  = result[0].data['geometry']['location']['lat']
+          @center_map_longitude = result[0].data['geometry']['location']['lng']
         end
       end
+    else
+      current_user_address  = current_user.profile.address
+      @center_map_latitude  = current_user_address.latitude
+      @center_map_longitude = current_user_address.longitude
     end
     
     @locations = []
     @stations = ChargeStation.all
+    
+    # build a 2 dimensional array for use with the javascript code ,embedded in the page, to locate the pins for each
+    # charge station
     @stations.each do |station|
       url = "#{root_url}?charge_station=#{station.id}#station"
-      addr = station.address
-      @locations << [addr.latitude, addr.longitude, url]
+      station_address = station.address
+      @locations << [station_address.latitude, station_address.longitude, url]
     end
     
     # @ip = 59.100.247.2
@@ -49,6 +53,7 @@ class HomesController < ApplicationController
       
       @vehicles = Vehicle.where(user: @current_user)
       
+      # dynamic navigation on return button (save where we come from)
       session[:conversations_rtn] = "#{root_url}?charge_station=#{@charge_station.id}#station"
       session[:messages_rtn] = session[:conversations_rtn]
     end
