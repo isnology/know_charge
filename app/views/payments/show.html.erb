@@ -1,0 +1,22 @@
+
+<h5><%= @charge_session_name %></h5>
+<br>
+<h5>Charge session has been completed, please make payment.</h5>
+<br>
+<%= form_with(url: new_payment_path, local: true, method: :get) do |form| %>
+  <div class="s-table">
+    <div class="across">
+      <div class="s-label">Total amount owing in cents</div>
+      <div class="data"><%= @amount %></div>
+    </div>
+    <div class="across">
+      <div class="s-label">Amount to pay with this card (in cents)</div>
+      <div class="data"><%= form.number_field :amount, id: :amount, value: @amount %></div>
+    </div>
+  </div>
+  <%= form.hidden_field :booking_id, value: @booking.id %>
+  <%= form.hidden_field :name, value: @charge_session_name %>
+  <div class="actions">
+    <%= form.submit 'Continue', class: 'btn btn-warning' %>
+  </div>
+<% end %>

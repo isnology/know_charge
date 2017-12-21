@@ -1,0 +1,5 @@
+<h5><%= @charge_session_name %></h5>
+<br>
+<br>
+
+<%= button_to 'Finished charging', charge_session_ends_path(id: @booking.id), class: 'btn btn-warning' %>

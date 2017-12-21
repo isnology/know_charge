@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root 'homes#index'
   devise_for :users
   #get 'homes/index'
@@ -21,8 +21,10 @@ Rails.application.routes.draw do
   resources :conversations, only: [:index, :create]
   resources :messages, only: [:index, :create]
   resources :favourites, only: [:index, :create, :destroy]
-  resources :charge_sessions, only: [:index, :show, :create]
-  resources :payments, only: [:new, :create]
+  resources :charge_sessions, only: [:index]
+  resources :charge_session_starts, only: [:new, :create]
+  resources :charge_session_ends, only: [:new, :create]
+  resources :payments, only: [:show, :new, :create]
   get '/support' => 'support#new'
   post '/support' => 'support#success'
   

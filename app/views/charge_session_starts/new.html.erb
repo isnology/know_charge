@@ -1,0 +1,5 @@
+<h5><%= @charge_session_name %></h5>
+
+<%= button_to 'Start charging', charge_session_starts_path(id: @booking.id), class: 'btn btn-info' %>
+
+<%= link_to 'Back', charge_session_starts_path, class: 'btn btn-success' %>

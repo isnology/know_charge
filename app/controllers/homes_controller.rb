@@ -47,8 +47,8 @@ class HomesController < ApplicationController
       @adapter_plugs = AdapterPlug.where(charge_station: @charge_station)
       @plugs = []
       @adapter_plugs.each { |plug| @plugs << Adapter.find(plug.adapter_id) }
-      start_month = Date.new(Date.today.year, Date.today.month - 1)
-      end_month = Date.new(Date.today.year, Date.today.month + 1).end_of_month
+      start_month = (Date.today << 1).beginning_of_month
+      end_month = (Date.today >> 1).end_of_month
       @bookings = Booking.where(charge_station: @charge_station).where(start_time: (start_month..end_month))
       
       @vehicles = Vehicle.where(user: @current_user)
