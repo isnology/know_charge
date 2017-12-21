@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   put 'profiles' => 'profiles#update', as: 'profile'
   post 'profiles' => 'profiles#create', as: 'new_profile_create'
   
+  resources :homes, only: [:index, :show]
   resources :vehicles
   resources :adapters, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :charge_stations do
