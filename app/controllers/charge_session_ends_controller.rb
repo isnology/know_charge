@@ -46,8 +46,7 @@ class ChargeSessionEndsController < ApplicationController
       kwh = c_kwh < v_kwh ? c_kwh : v_kwh
       payment = (booking.charge_station.price_kwh_cents * hours * kwh).to_i
       if booking.update_attributes!(price_cents: payment)
-        redirect_to payment_path(id: booking.id), notice: 'Charge session was successfully
-completed.'
+        redirect_to payment_path(id: booking.id), notice: 'Charge session was successfully completed.'
       else
         render charge_sessions_path(id: booking.id), notice: 'Unable to update Booking record with completed price.'
       end

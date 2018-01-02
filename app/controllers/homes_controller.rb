@@ -5,6 +5,7 @@ class HomesController < ApplicationController
   def index
     set_map
     
+    # get location based on ip address (doesn't work)
     # @ip = 59.100.247.2
     #response = HTTParty.get("http://api.ipinfodb.com/v3/ip-city/?key=#{ENV.fetch('IPINFO_KEY')}&ip=#{@ip}")
 
@@ -52,11 +53,10 @@ class HomesController < ApplicationController
       # center the map based on a "search/position" address if one entered
       if @search = home_params[:search]
         geocode_result = Geocoder.search(@search)
-        if geocode_result.present?
-          if geocode_result[0].data['geometry']['location'].present?
-            @center_map_latitude  = result[0].data['geometry']['location']['lat']
-            @center_map_longitude = result[0].data['geometry']['location']['lng']
-          end
+        if geocode_result.present? &&
+            geocode_result[0].data['geometry']['location'].present?
+          @center_map_latitude  = result[0].data['geometry']['location']['lat']
+          @center_map_longitude = result[0].data['geometry']['location']['lng']
         end
       else
         current_user_address  = current_user.profile.address
@@ -67,8 +67,8 @@ class HomesController < ApplicationController
       @locations = []
       @stations = ChargeStation.all
   
-      # build a 2 dimensional array for use with the javascript code ,embedded in the page, to locate the pins for each
-      # charge station
+      # build a 2 dimensional array for use with the javascript code ,embedded in the page, to locate the pins for
+      # each charge station
       @stations.each do |station|
         url = "#{home_path(id: station.id)}#station"
         station_address = station.address
