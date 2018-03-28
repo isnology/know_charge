@@ -76,6 +76,7 @@ Research ideas and add any new keys as needed as I developed the project (google
   - Stripe (credit card payments)
   
 - All the above require you to create keys on their web sites i.e. AWS, Google Maps etc, google it for instructions
+  google API key in dev set for port 3000 and 3001 only
 
 - heroku run rails db:migrate
 - heroku run rails db:seed
